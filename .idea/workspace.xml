@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b29e8f58-aaf4-4022-81f3-8d23a2f7c748" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Imtiaz" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="registration.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/registration.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="756">
+              <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addproduct.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/addproduct.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-486">
+              <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="38" />
+              <folding>
+                <element signature="n#style#0;n#h4#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/user.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-378">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+              <folding>
+                <element signature="n#style#0;n#h4#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>\&lt;\?php\n\nsession_start\(\)\;\nif \(\!isset\(\$_SESSION\[\'id\'\]\)\) \{\n    header\(\&quot;Location\: admin\.php\&quot;\)\;\n\}\nrequire_once \'\.\.\/core\/init\.php \'\;\ninclude \'includes\/head\.php\'\;\ninclude \'includes\/navbar\.php\'\;\n\$conn \= new Database\(\)\;\n\$sql \= \&quot;SELECT \* FROM categories where parent\=0\&quot;\;\n\$pquery \= \$conn\-\&gt;getall\(\$sql\)\;\n\$sql2 \= \&quot;select \* from categories where parent\=0\&quot;\;\n\$squery \= \$conn\-\&gt;getall\(\$sql2\)\;\n\/\/process form\n\n\n\n\n\/\/delete\nif \(isset\(\$_GET\[\'delete\'\]\) \&amp;\&amp; \!empty\(\$_GET\[\'delete\'\]\)\) \{\n    \$delete_id \= \(int\) \$_GET\[\'delete\'\]\;\n    \$delete_id \= sanitize\(\$delete_id\)\;\n    \$sql \= \&quot;delete from categories where id \=\'\$delete_id\'\&quot;\;\n    \$edit_result \= \$conn\-\&gt;catdelete\(\$sql\)\;\n\}\n\/\/edit\nif \(isset\(\$_GET\[\'edit\'\]\) \&amp;\&amp; \!empty\(\$_GET\[\'edit\'\]\)\) \{\n    \$edit \= \(int\) \$_GET\[\'edit\'\]\;\n    \$edit_id \= sanitize\(\$edit\)\;\n    \$sql2 \= \&quot;select \* from categories where id\=\'\$edit_id\'\&quot;\;\n    \$edit_result \= \$conn\-\&gt;getall\(\$sql2\)\;\n    \$dbcat \= mysqli_fetch_assoc\(\$edit_result\)\;\n\n\}\n\/\/add\nif \(isset\(\$_POST\[\'add\'\]\)\) \{\n    \$parent\=sanitize\(\$_POST\[\'parent\'\]\)\;\n    \$category\=sanitize\(\$_POST\[\'category\'\]\)\;\n\n\n    if \(\$category \=\= \&quot;\&quot;\) \{\n        \$error \= \'you must enter a category\'\;\n    \} else \{\n             \$sqlform \= \&quot;select \* from categories where category\=\'\$category\' and parent \= \'\$parent\'\&quot;\;\n             \$fresult\= \$conn\-\&gt;getall\(\$sqlform\)\;\n             \$count\= mysqli_num_rows\(\$fresult\)\;\n        if \(\$count \&gt; 0\) \{\n            \$error \= \$category \. \' already exists\'\;\n        \} else \{\n            if \(isset\(\$_GET\[\'edit\'\]\)\) \{\n                \$upsql \= \&quot;UPDATE categories SET category \=\'\$category\'\, parent\=\'\$parent\' WHERE id \=\'\$edit_id\'\&quot;\;\n                \$up \= \$conn\-\&gt;catupdate\(\$upsql\)\;\n            \} else \{\n                \$addsql \= \&quot;insert into categories \(category\, parent\) values \(\'\$category\'\,\'\$parent\'\)\&quot;\;\n                \$final \= \$conn\-\&gt;catinsert\(\$addsql\)\;\n                header\(\'Location\: category\.php\'\)\;\n            \}\n\n        \}\n\n    \}\n\}\n\$cat_value\=\'\'\;\n\$parent_value\=0\;\nif \(isset\(\$_GET\[\'edit\'\]\)\)\{\n  \$cat_value\=\$dbcat\[\'category\'\]\;\n  \$parent_value\=\$dbcat\[\'parent\'\]\;\n\}\n\?\&gt;\n\&lt;\?php if \(isset\(\$error\)\) \{\n  echo \&quot;\&lt;h4 style\=\'color\:red\'\&gt;\&quot; \. \$error \. \&quot;\&lt;\/h4\&gt;\&quot;\;\n\}\?\&gt;\n\&lt;\?php if \(isset\(\$_GET\[\'msg\'\]\)\) \{\n  echo \&quot;\&lt;h3  style\=\'color\:green\' \&gt;\&quot; \. \$_GET\[\'msg\'\] \. \&quot;\&lt;\/h3\&gt;\&quot;\;\n\}\?\&gt;\n   \&lt;div class\=\&quot;container\&quot;\&gt;\n  \&lt;div class\=\&quot;row\&quot;\&gt;\n    \&lt;div class\=\&quot;col\-md\-4\&quot;\&gt;\n      \&lt;legend\&gt;\&lt;\?\=\(\(isset\(\$_GET\[\'edit\'\]\)\)\?\'Edit\'\:\'Add \'\)\?\&gt; a category\&lt;\/legend\&gt;\n      \&lt;form class\=\&quot;form\&quot; action\=\&quot;category\.php\&lt;\?\=\(\(isset\(\$_GET\[\'edit\'\]\)\)\?\'\?edit\=\' \.\$edit_id\:\'\'\)\;\?\&gt;\&quot; method\=\&quot;post\&quot;\&gt;\n        \&lt;div class\=\&quot;form\-group\&quot;\&gt;\n          \&lt;label for\=\&quot;parent\&quot;\&gt;Parent\&lt;\/label\&gt;\n          \&lt;select class\=\&quot;form\-control\&quot; id\=\&quot;parent\&quot; name\=\&quot;parent\&quot;\&gt;\n            \&lt;option value\=\&quot;0\&quot;\&lt;\?\=\(\(\$parent_value \=\= 0\)\?\' selected\=\&quot;selected\&quot;\'\:\'\'\)\;\?\&gt;\&gt;Parent\&lt;\/option\&gt;\n            \&lt;\?php if \(\$squery\) \{\?\&gt;\n              \&lt;\?php while \(\$parent \= \$squery\-\&gt;fetch_assoc\(\)\) \{\?\&gt;\n                \&lt;option value\=\&quot;\&lt;\?\=\$parent\[\'id\'\]\;\?\&gt;\&quot;\&lt;\?\=\(\(\$parent_value \=\= \$parent\[\'id\'\]\)\?\' selected\=\&quot;selected\&quot;\'\:\'\'\)\;\?\&gt;\&gt;\&lt;\?\=\$parent\[\'category\'\]\;\?\&gt;\&lt;\/option\&gt;\n              \&lt;\?php \}\} else \{\?\&gt;\n                \&lt;p\&gt;Data is not available \&lt;\/p\&gt;\n              \&lt;\?php \}\?\&gt;\n            \&lt;\/select\&gt;\n          \&lt;\/div\&gt;\n          \&lt;div class\=\&quot;form\-group\&quot;\&gt;\n            \&lt;label for\=\&quot;category\&quot;\&gt;category\&lt;\/label\&gt;\n            \&lt;input type\=\&quot;text\&quot; class\=\&quot;form\-control\&quot; name\=\&quot;category\&quot; id\=\&quot;cat\&quot; value\=\&quot;\&lt;\?\=\$cat_value\?\&gt;\&quot;\&gt;\n          \&lt;\/div\&gt;\n          \&lt;div class\=\&quot;form\-group\&quot;\&gt;\n            \&lt;input type\=\&quot;submit\&quot; name\=\&quot;add\&quot;  class\=\&quot;btn btn\-success\&quot; value\=\&lt;\?\=\(\(isset\(\$_GET\[\'edit\'\]\)\)\?\'Edit\'\:\'Add\'\)\?\&gt;   \&quot; a category\&quot;\&gt;\n          \&lt;\/div\&gt;\n        \&lt;\/form\&gt;\n      \&lt;\/div\&gt;\n      \&lt;div class\=\&quot;col\-md\-6\&quot;\&gt;\n        \&lt;legend\&gt;All category\&lt;\/legend\&gt;\n        \&lt;table class\=\&quot;table table\-bordered\&quot;\&gt;\n          \&lt;thead \&gt;\n            \&lt;th\&gt;Category\&lt;\/th\&gt;\&lt;th\&gt;Parent\&lt;\/th\&gt;\&lt;th\&gt;Action\&lt;\/th\&gt;\n          \&lt;\/thead\&gt;\n          \&lt;tbody\&gt;\n            \&lt;\?php if \(\$pquery\) \{\?\&gt;\n              \&lt;\?php while \(\$parent \= \$pquery\-\&gt;fetch_assoc\(\)\) \{\?\&gt;\n                \&lt;tr class\=\&quot;bg\-primary\&quot;\&gt;\n                  \&lt;td\&gt;\&lt;\?\=\$parent\[\'category\'\]\?\&gt;\&lt;\/td\&gt;\n                  \&lt;td\&gt;parent\&lt;\/td\&gt;\n                  \&lt;td\&gt;\n                    \&lt;a href\=\&quot;category\.php\?edit\=\&lt;\?\=\$parent\[\'id\'\]\;\?\&gt;\&quot;class\=\&quot;btn btn\-xs btn\-default\&quot;\&gt;\&lt;span class \=\&quot;glyphicon glyphicon\-pencil\&quot; \&gt;\&lt;\/span\&gt;\&lt;\/a\&gt;\n                    \&lt;a href\=\&quot;category\.php\?delete\=\&lt;\?\=\$parent\[\'id\'\]\;\?\&gt;\&quot;class\=\&quot;btn btn\-xs btn\-default\&quot;\&gt;\&lt;span class\=\&quot;glyphicon glyphicon\-remove\-sign\&quot;\&gt;\&lt;\/span\&gt;\&lt;\/a\&gt;\n                  \&lt;\/td\&gt;\n                \&lt;\/tr\&gt;\n                \&lt;\?php \$parent_id \= \(int\) \$parent\[\'id\'\]\;\n                \$sql2 \= \&quot;select \* from categories where parent\=\'\$parent_id\'\&quot;\;\n                \$cresult \= \$conn\-\&gt;getall\(\$sql2\)\;\n                while \(\$child \= \$cresult\-\&gt;fetch_assoc\(\)\) \{\?\&gt;\n                  \&lt;tr\&gt;\n                    \&lt;td\&gt;\&lt;\?\=\$child\[\'category\'\]\?\&gt;\&lt;\/td\&gt;\n                    \&lt;td\&gt;\&lt;\?\=\$parent\[\'category\'\]\?\&gt;\&lt;\/td\&gt;\n                    \&lt;td\&gt;\n                      \&lt;a href\=\&quot;category\.php\?edit\=\&lt;\?\=\$child\[\'id\'\]\;\?\&gt;\&quot;class\=\&quot;btn btn\-xs btn\-default\&quot;\&gt;\&lt;span class \=\&quot;glyphicon glyphicon\-pencil\&quot; \&gt;\&lt;\/span\&gt;\&lt;\/a\&gt;\n                      \&lt;a href\=\&quot;category\.php\?delete\=\&lt;\?\=\$child\[\'id\'\]\;\?\&gt;\&quot;class\=\&quot;btn btn\-xs btn\-default\&quot;\&gt;\&lt;span class\=\&quot;glyphicon glyphicon\-remove\-sign\&quot;\&gt;\&lt;\/span\&gt;\&lt;\/a\&gt;\n                    \&lt;\/td\&gt;\n                  \&lt;\/tr\&gt;\n                \&lt;\?php \}\?\&gt;\&lt;\?php \}\?\&gt;\&lt;\?php \} else \{\?\&gt;\n                  \&lt;p\&gt;Data is not available \&lt;\/p\&gt;\n                \&lt;\?php \}\?\&gt;\n              \&lt;\/tbody\&gt;\n\n            \&lt;\/table\&gt;\n\n          \&lt;\/div\&gt;\n        \&lt;\/div\&gt;\n      \&lt;\/div\&gt;\n</find>
+      <find>getall</find>
+      <find>$conn</find>
+      <find>edit</find>
+      <find>title</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/admin/style.css" />
+        <option value="$PROJECT_DIR$/admin/category.php" />
+        <option value="$PROJECT_DIR$/core/init.php" />
+        <option value="$PROJECT_DIR$/core/db.php" />
+        <option value="$PROJECT_DIR$/admin/includes/head.php" />
+        <option value="$PROJECT_DIR$/admin/includes/child.php" />
+        <option value="$PROJECT_DIR$/admin/child.php" />
+        <option value="$PROJECT_DIR$/admin/includes/footer.php" />
+        <option value="$PROJECT_DIR$/admin/includes/test.php" />
+        <option value="$PROJECT_DIR$/admin/ajax.php" />
+        <option value="$PROJECT_DIR$/admin/addproduct.php" />
+        <option value="$PROJECT_DIR$/admin/edit.php" />
+        <option value="$PROJECT_DIR$/admin/product.php" />
+        <option value="$PROJECT_DIR$/admin/includes/navbar.php" />
+        <option value="$PROJECT_DIR$/admin/adminprofile.php" />
+        <option value="$PROJECT_DIR$/admin/index.php" />
+        <option value="$PROJECT_DIR$/admin/admin.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.2">
+    <include_path>
+      <path value="$PROJECT_DIR$/../../php" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="10" />
+    <option name="y" value="20" />
+    <option name="width" value="1346" />
+    <option name="height" value="688" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <autoscrollToSource ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Imtiaz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Imtiaz" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Imtiaz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Imtiaz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Imtiaz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Imtiaz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../php" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b29e8f58-aaf4-4022-81f3-8d23a2f7c748" name="Default" comment="" />
+      <created>1547670421139</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1547670421139</updated>
+      <workItem from="1547670428081" duration="740000" />
+      <workItem from="1547698248931" duration="3543000" />
+      <workItem from="1547747072928" duration="171000" />
+      <workItem from="1547747335060" duration="2960000" />
+      <workItem from="1547755181916" duration="6464000" />
+      <workItem from="1547921109480" duration="12224000" />
+      <workItem from="1548001477248" duration="12686000" />
+      <workItem from="1548094848554" duration="11210000" />
+      <workItem from="1548180540325" duration="6432000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="56430000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913645" visible="true" weight="0.19180088" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Favorites" order="2" sideWeight="0.50086355" side_tool="true" weight="0.24962406" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="PHP-CGI Server" order="7" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.0" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913645" visible="true" weight="0.19180088" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="PHP-CGI Server" order="9" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.0" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="2" sideWeight="0.50086355" side_tool="true" weight="0.24962406" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/admin/addproduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2349">
+          <caret line="87" column="43" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="54" column="49" lean-forward="true" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/init.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3243">
+          <caret line="141" column="13" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3496">
+          <caret line="152" column="8" lean-forward="true" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/style.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="116" column="13" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/brand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1717">
+          <caret line="101" column="46" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="116" column="13" lean-forward="true" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/brand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1717">
+          <caret line="101" column="46" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/addproduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2139" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="691">
+          <caret line="120" column="1" lean-forward="true" selection-start-line="120" selection-start-column="1" selection-end-line="120" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/update.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/style.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/category.php___jb_old___" />
+    <entry file="file://$PROJECT_DIR$/includes1/lsb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="26" column="6" lean-forward="true" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/lsb.php" />
+    <entry file="file://$PROJECT_DIR$/admin/includes/child.php" />
+    <entry file="file://$PROJECT_DIR$/admin/child.php" />
+    <entry file="file://$PROJECT_DIR$/admin/brand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="101" column="46" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/init.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-702">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="85" column="8" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/1 _wZhhTstI_DCebB2fK2c5g.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/11390205_795005260594706_2217827285847698636_n.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/12189812_862873043807927_7383766718174107100_n.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/29570316_410845522689483_2150296414311175999_n.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/30442772_1632778183504392_1878160164561879040_n.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/30698737_1930679707244540_2067472783847194624_n.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/30728072_980113608802700_7912237822692556800_n.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/48187098_529289534205443_7408842242279866368_n.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/back.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/ajax.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/logout.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-620">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-616">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/head.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/navbar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="52" column="112" selection-start-line="52" selection-start-column="112" selection-end-line="52" selection-end-column="112" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/adminprofile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-378">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/registration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/editproduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1304">
+          <caret line="71" column="25" selection-start-line="71" selection-start-column="25" selection-end-line="72" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/addproduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-486">
+          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

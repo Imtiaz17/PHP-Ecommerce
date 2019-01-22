@@ -1,0 +1,121 @@
+body
+{
+	padding-top: 0;
+	padding-bottom: 10px;
+}
+
+#logo
+{
+	position: absolute;
+	padding: 0;
+	width: 100%;
+	height: 180px;
+	background-image: url("../images/textlogo.png");
+	background-repeat: no-repeat;
+	background-position:top left;
+	background-size: 30%;
+	margin-top: 15%;
+	margin-left: 20%;
+	opacity: 0.8;
+
+
+}
+#news-bar
+{
+	width: 100%;
+	height: 30px;
+	margin: 0 auto;
+	background: #D3D3D3;
+	margin-top: -20px;
+}
+#LNB
+{
+
+	width: 10%;
+	height: 100%;
+	float: left;
+	font-size: 24px;
+	font-family: "Times New Roman", Times,serif;
+	color: red;
+	background-color:#0000CD;
+	text-indent: 10px;
+}
+#RNB
+{
+	width: 90%;
+	height: 100%;
+	float: left;
+	font-size: 18px;
+	font-family: "Times New Roman", Times,serif;
+	color: black;
+	text-indent: 10px;
+	background-color:#00FF00;
+}
+.img-thumb
+{
+	width: auto;
+	height: 200px;
+	position: center;
+}
+img.details
+{
+	width: 80%;
+	margin:15px auto;
+}
+#leftbar
+{
+	background: #D5D8DC;
+	text-align: center;
+	float: left;
+	width: 100%;
+	margin-left: -30px;
+}
+#leftbar ul
+{
+	padding: 2px;
+	margin: 0px;
+	list-style: none;
+	text-align: center;
+}
+#leftbar ul li
+{
+	list-style: none;
+	display: block;
+	width: 200px;
+	height: 40px;
+	text-indent: 10px;
+	color: red;
+	transition: 1s all;
+
+}
+#leftbar ul li:hover
+{
+	background: red;
+	transition: 1s all;
+	width: 30%;
+}
+#leftbar ul li a
+{
+	display: block;
+	width: 100%;
+	height: 50%;
+	text-align: left;
+	font-size: 20px;
+	color: #e71838;
+	text-decoration: none;
+}
+#leftbar ul li:hover a
+{
+	color: #FFF ;
+	transition: 1s all;
+}
+
+h3
+{
+	color:#17202A;
+	background: #2ECC71;
+}
+#add-product
+{
+	margin: 50px;
+}
