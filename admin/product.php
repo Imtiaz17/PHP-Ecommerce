@@ -16,11 +16,11 @@ if (isset($_GET['featured'])) {
     $id = (int)$_GET['id'];
     $featured = (int)$_GET['featured'];
     $featuredsql = "update product set featured='$featured' where id='$id'";
-    $read = $db->query($featuredsql);
+     $db->query($featuredsql);
     header('Location: product.php');
 }
-if (isset($_GET['id'])) {
-	$did=(int)$_GET['id'];
+if (isset($_GET['delete'])) {
+	$did=(int)$_GET['delete'];
 	$dquery="delete from product where id='$did'";
 	$result= $db->query($dquery);
     header('Location: product.php');
@@ -63,7 +63,7 @@ if (isset($_GET['id'])) {
             <td>
                 <a href="edit.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-default"><span
                             class="glyphicon glyphicon-pencil"></span></a> &nbsp
-                <a href="product.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-default"><span
+                <a href="product.php?delete=<?= $row['id']; ?>" class="btn btn-xs btn-default"><span
                             class="glyphicon glyphicon-remove-sign"></span></a>
             </td>
             <td><?= $row['title']; ?></td>

@@ -148,5 +148,5 @@ class Database
     }
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Imtiaz/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/PHP-Ecommerce/config.php';
 require_once BASEURL . '../helpers/helpers.php';
