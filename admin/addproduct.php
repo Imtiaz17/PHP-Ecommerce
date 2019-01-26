@@ -16,8 +16,8 @@ $cquery = $conn->getall($csql);
 
 if (isset($_POST['submit'])) {
     $name = sanitize($_POST['title']);
-    $price = sanitize($_POST['price']);
-    $list_price = sanitize($_POST['list_price']);;
+    $pprice = sanitize($_POST['pp']);
+    $price = sanitize($_POST['price']);;
     $brand = sanitize($_POST['brand']);
     $cat = sanitize($_POST['child']);
     $description = sanitize($_POST['description']);
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     $div = explode('.', $pro_image);
     $file_ext = strtolower(end($div));
 
-    if ($name == '' || $price == '' || $list_price == '' || $brand == '' || $cat == '' || $description == '') {
+    if ($name == '' || $price == '' || $brand == '' || $cat == '' || $description == '') {
         $error = " Field  must not be empty";
 
     }
@@ -39,8 +39,8 @@ if (isset($_POST['submit'])) {
     if (in_array($file_ext, $allowed) === false) {
         $error = " Only jpg,jpeg,png file supported ";
     } else {
-        move_uploaded_file($pro_temp, "../images/$pro_image");
-        $dbinsert = "INSERT INTO product (title,price,list_price,brand,cat,image,description) VALUES ('$name','$price','$list_price','$brand','$cat','$pro_image','$description') ";
+        move_uploaded_file($pro_temp, "../img/$pro_image");
+        $dbinsert = "INSERT INTO product (title,pp,price,brand,cat,image,description) VALUES ('$name','$pprice','$price','$brand','$cat','$pro_image','$description') ";
         $create = $conn->insert($dbinsert);
         header('Location:product.php');
     }
@@ -134,10 +134,10 @@ if (isset($_POST['submit'])) {
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-4">
-                        <h4><b>Price</b></h4>
+                        <h4><b>Previous Price</b></h4>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="price" class="form-control">
+                        <input type="text" name="pp" class="form-control">
                     </div>
                 </div>
             </div>
@@ -148,10 +148,10 @@ if (isset($_POST['submit'])) {
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-4">
-                        <h4><b>List Price</b></h4>
+                        <h4><b>Price</b></h4>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="list_price" class="form-control">
+                        <input type="text" name="price" class="form-control">
                     </div>
                 </div>
             </div>

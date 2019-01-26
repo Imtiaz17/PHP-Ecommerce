@@ -40,8 +40,8 @@ if (isset($_GET['delete'])) {
     <thead>
     <th>Action</th>
     <th>Product</th>
+    <th>Previous Price</th>
     <th>Price</th>
-    <th>List Price</th>
     <th>Brand</th>
     <th>Category</th>
     <th>Featured</th>
@@ -67,8 +67,8 @@ if (isset($_GET['delete'])) {
                             class="glyphicon glyphicon-remove-sign"></span></a>
             </td>
             <td><?= $row['title']; ?></td>
+            <td><?= $row['pp']; ?></td>
             <td><?= $row['price']; ?></td>
-            <td><?= $row['list_price']; ?></td>
             <td><?= $row['brand']; ?></td>
             <td><?= $category; ?></td>
             <td><a href="product.php?featured=<?= (($row['featured'] == 0) ? '1' : '0'); ?>& id=<?= $row['id']; ?>"

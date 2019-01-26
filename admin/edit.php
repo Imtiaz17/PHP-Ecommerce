@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
     $pro_image = $_FILES['image']['name'];
     $pro_temp = $_FILES['image']['tmp_name'];
 
-    if ($name == '' || $price == '' || $list_price == '' || $brand == '' || $cat == '' || $description == '') {
+    if ($name == '' || $price == '' || $brand == '' || $cat == '' || $description == '') {
         $error = " Field  must not be empty";
     } else {
         if (is_uploaded_file($pro_temp)) {
