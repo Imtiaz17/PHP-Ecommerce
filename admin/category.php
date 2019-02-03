@@ -4,14 +4,14 @@ session_start();
 if (!isset($_SESSION['id'])) {
     header("Location: admin.php");
 }
-require_once '../core/init.php ';
+require_once '../core/db.php ';
 include 'includes/head.php';
 include 'includes/navbar.php';
-$conn = new Database();
+
 $sql = "SELECT * FROM categories where parent=0";
-$pquery = $conn->getall($sql);
+$pquery = mysqli_query($db,$sql);
 $sql2 = "select * from categories where parent=0";
-$squery = $conn->getall($sql2);
+$squery = mysqli_query($db,$sql2);
 //process form
 
 
@@ -27,31 +27,31 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
     $edit = (int)$_GET['edit'];
     $edit_id = sanitize($edit);
     $sql2 = "select * from categories where id='$edit_id'";
-    $edit_result = $conn->getall($sql2);
+    $edit_result = mysqli_query($db,$sql2);
     $dbcat = mysqli_fetch_assoc($edit_result);
 
 }
 //add
 if (isset($_POST['add'])) {
-    $parent = sanitize($_POST['parent']);
-    $category = sanitize($_POST['category']);
+    $parent = $_POST['parent'];
+    $category = $_POST['category'];
 
 
     if ($category == "") {
         $error = 'you must enter a category';
     } else {
         $sqlform = "select * from categories where category='$category' and parent = '$parent'";
-        $fresult = $conn->getall($sqlform);
+        $fresult = mysqli_query($db,$sqlform);
         $count = mysqli_num_rows($fresult);
         if ($count > 0) {
             $error = $category . ' already exists';
         } else {
             if (isset($_GET['edit'])) {
                 $upsql = "UPDATE categories SET category ='$category', parent='$parent' WHERE id ='$edit_id'";
-                $up = $conn->catupdate($upsql);
+                $up = mysqli_query($db,$upsql);
             } else {
                 $addsql = "insert into categories (category, parent) values ('$category','$parent')";
-                $final = $conn->catinsert($addsql);
+                $final = mysqli_query($db,$addsql);
                 header('Location: category.php');
             }
 
@@ -71,7 +71,8 @@ if (isset($_GET['edit'])) {
 } ?>
 <?php if (isset($_GET['msg'])) {
     echo "<h3  style='color:green' >" . $_GET['msg'] . "</h3>";
-} ?>
+}?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -82,12 +83,8 @@ if (isset($_GET['edit'])) {
                     <label for="parent">Parent</label>
                     <select class="form-control" id="parent" name="parent">
                         <option value="0"<?= (($parent_value == 0) ? ' selected="selected"' : ''); ?>>Parent</option>
-                        <?php if ($squery) { ?>
-                            <?php while ($parent = $squery->fetch_assoc()) { ?>
+                            <?php while ($parent = mysqli_fetch_assoc($squery)) { ?>
                                 <option value="<?= $parent['id']; ?>"<?= (($parent_value == $parent['id']) ? ' selected="selected"' : ''); ?>><?= $parent['category']; ?></option>
-                            <?php }
-                        } else { ?>
-                            <p>Data is not available </p>
                         <?php } ?>
                     </select>
                 </div>
@@ -110,8 +107,7 @@ if (isset($_GET['edit'])) {
                 <th>Action</th>
                 </thead>
                 <tbody>
-                <?php if ($pquery) { ?>
-                    <?php while ($parent = $pquery->fetch_assoc()) { ?>
+                    <?php while ($parent = mysqli_fetch_assoc($pquery)) { ?>
                         <tr class="bg-primary">
                             <td><?= $parent['category'] ?></td>
                             <td>parent</td>
@@ -124,11 +120,11 @@ if (isset($_GET['edit'])) {
                         </tr>
                         <?php $parent_id = (int)$parent['id'];
                         $sql2 = "select * from categories where parent='$parent_id'";
-                        $cresult = $conn->getall($sql2);
-                        while ($child = $cresult->fetch_assoc()) { ?>
+                        $cresult = mysqli_query($db,$sql2);
+                        while ($child = mysqli_fetch_assoc($cresult)) { ?>
                             <tr>
-                                <td><?= $child['category'] ?></td>
-                                <td><?= $parent['category'] ?></td>
+                                <td><?= $child['category'] ;?></td>
+                                <td><?= $parent['category']; ?></td>
                                 <td>
                                     <a href="category.php?edit=<?= $child['id']; ?>"
                                        class="btn btn-xs btn-default"><span
@@ -138,9 +134,7 @@ if (isset($_GET['edit'])) {
                                                 class="glyphicon glyphicon-remove-sign"></span></a>
                                 </td>
                             </tr>
-                        <?php } ?><?php } ?><?php } else { ?>
-                    <p>Data is not available </p>
-                <?php } ?>
+                        <?php } } ?>
                 </tbody>
 
             </table>

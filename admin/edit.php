@@ -17,10 +17,12 @@ $id = (int)$_GET['id'];
 $query = "select * from product where id ='$id'";
 $getData = $conn->getall($query);
 $row = mysqli_fetch_assoc($getData);
+
+
 $pro_title = $row['title'];
 $pro_brand = $row['brand'];
-$pro_price = $row['price'];
-$pro_listprice = $row['list_price'];
+$pro_price = $row['pp'];
+$price = $row['price'];
 $pro_image = $row['image'];
 $pro_des = $row['description'];
 $pro_brand = $row['brand'];
@@ -28,6 +30,7 @@ $pro_cat = $row['cat'];
 
 $parentsql="select * from categories where id ='$pro_cat'";
 $parentresult = $conn->getall($parentsql);
+
 $parentfetch = mysqli_fetch_assoc($parentresult);
 $parentid=$parentfetch['parent'];
 $psql = "select * from categories where id='$parentid'";
@@ -43,8 +46,8 @@ $catf = mysqli_fetch_assoc($catr);
 
 if (isset($_POST['submit'])) {
     $name = sanitize($_POST['title']);
+    $pprice= sanitize($_POST['pprice']);
     $price = sanitize($_POST['price']);
-    $list_price = sanitize($_POST['list_price']);;
     $brand = sanitize($_POST['brand']);
     $cat = sanitize($_POST['child']);
     $description = sanitize($_POST['description']);
@@ -56,12 +59,12 @@ if (isset($_POST['submit'])) {
     } else {
         if (is_uploaded_file($pro_temp)) {
             move_uploaded_file($pro_temp, "../images/$pro_image");
-            $dbinsert = "update  product set title='$name',price='$price',list_price='$list_price',brand='$brand',cat='$cat',image='$pro_image',description= '$description' where id='$id'";
+            $dbinsert = "update  product set title='$name',pp='$pprice',price='$price',brand='$brand',cat='$cat',image='$pro_image',description= '$description' where id='$id'";
             $update = $conn->update($dbinsert);
             header('Location:product.php');
         }
         else{
-            $dbinsert = "update  product set title='$name',price='$price',list_price='$list_price',brand='$brand',cat='$cat',description= '$description' where id='$id'";
+            $dbinsert = "update  product set title='$name',pp='$pprice',price='$price',brand='$brand',cat='$cat',description= '$description' where id='$id'";
             $update = $conn->update($dbinsert);
             header('Location:product.php');
         }
@@ -140,7 +143,7 @@ if (isset($_POST['submit'])) {
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-2">
-                        <h4><b>Sub -Category</b></h4>
+                        <h4><b>Sub-Category</b></h4>
                     </div>
                     <div class="col-md-6">
                         <select class="form-control" name="child" id="child">
@@ -156,10 +159,10 @@ if (isset($_POST['submit'])) {
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-2">
-                        <h4><b>Price</b></h4>
+                        <h4><b>Previous Price</b></h4>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="price" value="<?= $pro_price; ?>" class="form-control">
+                        <input type="text" name="pprice" value="<?= $pro_price; ?>" class="form-control">
                     </div>
                 </div>
             </div>
@@ -170,10 +173,10 @@ if (isset($_POST['submit'])) {
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-2">
-                        <h4><b>List Price</b></h4>
+                        <h4><b>Price</b></h4>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="list_price" value="<?= $pro_listprice; ?>"
+                        <input type="text" name="price" value="<?= $price; ?>"
                                class="form-control">
                     </div>
                 </div>

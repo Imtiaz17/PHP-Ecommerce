@@ -1,12 +1,12 @@
-<?php require_once 'core/init.php';
+<?php require_once 'core/db.php';
 include 'includes1/head.php';
 include 'includes1/navbar.php';
+include 'includes1/catbar.php';
 include 'includes1/newsbar.php';
 include 'includes1/carosal.php';
 include 'includes1/modaldetails.php';
-$conn = new Database;
 $sql = "select * from product where featured=1";
-$featured = $conn->getall($sql);
+$featured = mysqli_query($db,$sql);
 ?>
 <!--Featured product show-->
 <div class="container">
@@ -17,7 +17,6 @@ $featured = $conn->getall($sql);
 
 <div class="container">
     <div class="row">
-        <?php if ($featured) { ?>
             <?php while ($product = $featured->fetch_assoc()) { ?>
                 <div class="col-md-3 ">
                     <div class="fp">
@@ -25,18 +24,17 @@ $featured = $conn->getall($sql);
                         <img class="img-thumb" src="img/<?= $product['image']; ?>" alt="<?= $product['title']; ?>">
                         <p class="list-price text-danger"> Previous Price <s>$<?= $product['pp']; ?></s></p>
                         <p class="Price"> <b>Now </b> $<?= $product['price']; ?></p>
-                        <a href="#" class="btn btn-success">
+                        <a href="#"  class="btn btn-success">
                             Details
                         </a>
-                        <a href="#" class="btn btn-primary">
+                        <button id="product" pid="<?=$product['id']?>" class="btn btn-primary">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
-                        </a>
+                        </button>
                     </div>
                 </div>
 
-            <?php } ?><?php } else { ?>
-            <p>There is no product</p>
-        <?php } ?>
+            <?php } ?>
+
     </div>
 </div>
 <!--Featured product end-->
@@ -48,7 +46,7 @@ $featured = $conn->getall($sql);
 <!--Category wise product show-->
 <?php
 $catsql = "select * from categories where parent=0";
-$catrun = $conn->getall($catsql);
+$catrun = mysqli_query($db,$catsql);
 if ($catrun) {
     while ($catchild = $catrun->fetch_assoc()) {
         ?>
@@ -65,7 +63,7 @@ if ($catrun) {
                             <?php
                             $parentid = $catchild['id'];
                             $childsql = "select * from categories where parent='$parentid'";
-                            $childrun = $conn->getall($childsql);
+                            $childrun = mysqli_query($db,$childsql);
                             if ($childrun) {
                                 while ($childfetch = $childrun->fetch_assoc()) { ?>
 
@@ -84,11 +82,11 @@ if ($catrun) {
                             <?php
                             $parentid = $catchild['id'];
                             $childsql = "select * from categories where parent='$parentid'";
-                            $childrun = $conn->getall($childsql);
+                            $childrun = mysqli_query($db,$childsql);
                             $childfetch = $childrun->fetch_assoc();
                             $childid = $childfetch['id'];
                             $childbox = "select * from product where cat='$childid'";
-                            $childresult = $conn->getall($childbox);
+                            $childresult = mysqli_query($db,$childbox);
                             if ($childresult) {
                                 while ($getchild = $childresult->fetch_assoc()) { ?>
                                     <div class="col-md-3 ">
@@ -100,9 +98,9 @@ if ($catrun) {
                                             <a href="#" class="btn btn-success">
                                                 Details
                                             </a>
-                                            <a href="#" class="btn btn-primary">
+                                            <button id="product" pid="<?=$getchild['id']?>" class="btn btn-primary">
                                                 <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 <?php } ?><?php } ?>
@@ -120,6 +118,7 @@ if ($catrun) {
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="slick/slick.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {

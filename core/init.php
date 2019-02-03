@@ -17,7 +17,7 @@ class Database
     {
         $brandinsert = $this->db->query($query);
         if ($brandinsert) {
-            header("Location: brand.php?msg=" . urlencode('Data Inserted'));
+            header("Location:nbrand.php?msg=" . urlencode('Data Inserted'));
             exit();
         } else {
             die($this->db->error);
@@ -84,7 +84,7 @@ class Database
     {
         $update = $this->db->query($query);
         if ($update) {
-            header("Location: brand.php?msg=" . urlencode('Data Updated '));
+            header("Location:nbrand.php?msg=" . urlencode('Data Updated '));
             exit();
         } else {
             die($this->db->error);
@@ -118,7 +118,7 @@ class Database
     {
         $delete = $this->db->query($query);
         if ($delete) {
-            header("Location: brand.php?msg=" . urlencode('Data Deleted '));
+            header("Location:nbrand.php?msg=" . urlencode('Data Deleted '));
             exit();
         } else {
             die($this->db->error);

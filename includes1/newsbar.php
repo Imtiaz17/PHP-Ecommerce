@@ -1,6 +1,4 @@
 <div id="news-bar">
-
-  
   <div id="LNB" style="width: 10%">
     Hot Offer ::
   </div>

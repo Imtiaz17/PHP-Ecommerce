@@ -7,7 +7,7 @@
     <ul class="nav navbar-nav">
       <li class=""><a href="category.php">Category</a></li>
        <li class=""><a href="product.php">Product</a></li>
-        <li class=""><a href="brand.php">Brand</a></li>
+        <li class=""><a href="nbrand.php">Brand</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
 
