@@ -1,11 +1,24 @@
 body
 {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 	padding-top: 0;
 	padding-bottom: 10px;
-
 }
+
+input:hover[type="submit"] {
+background: #7ed6df;
+}
+input:hover[type="text"] {
+background: #dff9fb;
+}
+
+.bt
+{
+  text-align: center;
+  margin-top: 10px;
+}
+
 
 #logo
 {

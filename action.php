@@ -29,7 +29,7 @@ if (isset($_POST['add'])) {
 
 		$sql3="INSERT INTO cart  (p_id,u_id,p_title,p_image,quantity,price,total)VALUES('$id','$user_id','$name','$image',1,'$price','$price')";
 		if (mysqli_query($db,$sql3)) {
-			echo "product has been added to cart";
+			echo "Product has been added to cart";
 		}
 
 

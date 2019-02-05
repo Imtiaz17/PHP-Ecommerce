@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['id'])){
 	header("Location: admin.php");
 }
-require_once '../core/init.php'; 
+require_once '../core/init.php';
 include 'includes/head.php';
 include 'includes/navbar.php';
 include 'user.php';
@@ -13,17 +13,17 @@ include 'user.php';
 	if (isset($_POST['register'])) {
 		$userrg= $user->userRegistration($_POST);
 	}
-		
-	
+
+
 
 ?>
 <div class="container">
 <div class="panel panel-default">
 	<div class="panel-heading">
-	<h4>Admin Registration</h4>
+	<h4>Admin Registration</h4>''
 		</div>
 		<div class="panel-body" style="max-width: 600px; margin: 0 auto">
-			<?php 
+			<?php
 			if (isset($userrg)) {
 				echo $userrg;
 			}
@@ -44,7 +44,7 @@ function chkName()
 				success:function(data)
 				{
 					$('#avail').html(data);
-					
+
 
 				}
 			});
@@ -58,24 +58,24 @@ function chkName()
 </script>
 
 			<form action="" method="POST">
-				<div class="form-group"> 
+				<div class="form-group">
 					<label for="name"> Name</label>
 					<input type="text" name="name" id="name"  class="form-control" >
-					
+
 
 				</div>
-				<div class="form-group"> 
+				<div class="form-group">
 					<label for="username"> User Name</label>
 					<input type="text"  name="username" id="username" onkeyup="chkName();" class="form-control">
 				<div id="avail"></div>
 				</div>
-				<div class="form-group"> 
+				<div class="form-group">
 					<label for="email"> Email Address</label>
 					<input type="text"  name="email" class="form-control">
 
 				</div>
-				
-				<div class="form-group"> 
+
+				<div class="form-group">
 					<label for="pass"> Password</label>
 					<input type="password" name="pass" class="form-control">
 
