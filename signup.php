@@ -2,10 +2,8 @@
 include 'includes1/head.php';
 include 'includes1/navbar.php';
 include 'includes1/catbar.php';
-if ($_SESSION['user_id']!="") {
-  header("Location:index.php");
-   exit();
-
+if (isset($_SESSION['id'])){
+	header("Location: index.php");
 }
 if (isset($_POST['submit'])) {
   $fname=$_POST['fname'];
@@ -21,8 +19,6 @@ if (isset($_POST['submit'])) {
    $dbquery=mysqli_query($db,$query);
    if ($dbquery) {
      header("Location:login.php");
-
-
    }
    else {
      echo "<script type='text/javascript'>

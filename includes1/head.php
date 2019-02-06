@@ -1,8 +1,5 @@
 <?php
 session_start();
-// $sql="select * from user";
-// $dbq=mysqli_query($db,$sql);
-// $row=mysqli_fetch_assoc($dbq);
 ?>
 
 

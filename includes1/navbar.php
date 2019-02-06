@@ -14,15 +14,17 @@
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
   </div>
+    <?php if (isset($_SESSION['id'])){?>
     <div class="bt col-md-4">
-        <?php if ($_SESSION['user_id'] !="") {?>
-     <a href="login.php" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Login</a></button>
-       <a href="signup.php" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-       <?php } else {?>
-         <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> My profile </a>
-         <a href="signout.php" class="btn btn-info"><span class="glyphicon glyphicon-log-out"></span> Signout </a>
+        <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-user"></span>My profile </a>
+        <a href="signout.php" class="btn btn-info"><span class="glyphicon glyphicon-log-out"></span> Signout </a>
+      </div>
+    <?php } else {?>
+        <div class="bt col-md-4">
+         <a href="login.php" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> Login</a></button>
+           <a href="signup.php" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+             </div>
          <?php } ?>
-  </div>
 
 
 

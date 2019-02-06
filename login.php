@@ -1,11 +1,11 @@
-<?php require_once 'core/db.php';
+<?php
+
+require_once 'core/db.php';
 include 'includes1/head.php';
 include 'includes1/navbar.php';
 include 'includes1/catbar.php';
-if (!$_SESSION['user_id']) {
-  header("Location:index.php");
-   exit();
-
+if (isset($_SESSION['id'])){
+	header("Location: index.php");
 }
 if (isset($_POST['submit'])) {
   $email=$_POST['email'];
@@ -16,10 +16,10 @@ $cheak=mysqli_num_rows($dbsql);
 
 if ($cheak>0) {
   while ($row=mysqli_fetch_assoc($dbsql)) {
-    $_SESSION['user_id']=$row['user_id'];
+    $_SESSION['id']=$row['user_id'];
   }
   header("Location:index.php");
-  exit();
+
 }
 else {
   echo "<script type='text/javascript'>
@@ -28,6 +28,8 @@ else {
 
 }
 }
+
+
 ?>
 <div class="container">
   <div class="col-md-2"></div>
