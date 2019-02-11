@@ -22,7 +22,7 @@ $featured = mysqli_query($db,$sql2);
           <?php } }?>
         </li>
       </li>
-      <li> <a href="#" id="cart"> <span class="glyphicon glyphicon-shopping-cart"></span> Cart </a>
+      <li> <a href="#" id="cart"> <span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">0</span></a>
     <ul>
        <li>
          <div class="aa panel panel-danger">

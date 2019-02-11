@@ -16,7 +16,7 @@ $cheak=mysqli_num_rows($dbsql);
 
 if ($cheak>0) {
   while ($row=mysqli_fetch_assoc($dbsql)) {
-    $_SESSION['id']=$row['user_id'];
+    $_SESSION['id']=$row['id'];
   }
   header("Location:index.php");
 

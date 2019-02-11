@@ -1,6 +1,6 @@
 <?php
 session_start();
-$sid=session_id();
+
 include'core/db.php';
 
 
@@ -8,8 +8,9 @@ include'core/db.php';
 // 1.add product in to cart
 
 if (isset($_POST['add'])) {
+	if (isset($_SESSION['id'])) {
 	$pid=$_POST['p_id'];
-	$user_id=$sid;
+	$user_id=$_SESSION['id'];
 	$sql="select * from cart where p_id='$pid' and u_id='$user_id'";
 	$dbquery=mysqli_query($db,$sql);
 	$count =mysqli_num_rows($dbquery);
@@ -32,17 +33,24 @@ if (isset($_POST['add'])) {
 			echo "Product has been added to cart";
 		}
 
+}
+	}
+	else {
+		echo"Please login to add" ;
 
 	}
 }
 // 2.cheakout page load from db
 if (isset($_POST["get_cart"])|| isset($_POST['cheakout'])){
-	$user_id=$sid;
+	if (isset($_SESSION['id'])) {
+	$user_id=$_SESSION['id'];
 	$sql4="select * from cart where u_id='$user_id'";
 	$dbquery3=mysqli_query($db,$sql4);
 	$count2=mysqli_num_rows($dbquery3);
 	if ($count2>0) {
 		$no=1;
+		$total_amt=0;
+
 		 while ($row2=mysqli_fetch_assoc($dbquery3)) {
 			 $cartid=$row2['id'];
 			 $cart_pid=$row2['p_id'];
@@ -50,8 +58,9 @@ if (isset($_POST["get_cart"])|| isset($_POST['cheakout'])){
 			$cart_img=$row2['p_image'];
 			$cart_pr=$row2['price'];
 			$cart_qty=$row2['quantity'];
-			$cart_sub=$row2['total'];
 			$cart_total=$cart_qty*$cart_pr;
+			$cart_sub=$row2['total'];
+			$total_amt=$cart_sub+$total_amt;
 			if (isset($_POST["get_cart"])) {
 				echo "
 				<div class='row'>
@@ -81,6 +90,16 @@ if (isset($_POST["get_cart"])|| isset($_POST['cheakout'])){
 			}
 
 		 }
+		 if ( isset($_POST['cheakout'])) {
+			 echo "<div class='row'>
+			     <div class='col-md-10'></div>
+			     <div class='col-md-2'>
+			       <b>Total Amount=$total_amt</b>
+			     </div>
+			   </div>";
+
+		 }
+	 }
 	}
 }
 
@@ -106,7 +125,7 @@ if (isset($_POST['updateproduct'])) {
 	$upprice=$_POST['price'];
 	$upqty=$_POST['qty'];
 	$uptotal=$_POST['total'];
-	$userid=$sid;
+	$userid=$_SESSION['id'];
 	$sql6="update cart set quantity='$upqty', price='$upprice', total='$uptotal' where p_id='$updateid' and u_id='$userid'";
 	$dbquery5=mysqli_query($db,$sql6);
 	if ($dbquery5) {

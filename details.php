@@ -7,7 +7,7 @@ include 'includes1/modaldetails.php';
 ?>
 <?php
 if (isset($_GET['id'])) {
-	echo $id = $_GET["id"];
+	 $id = $_GET["id"];
 }
 $sql = "select * from product where id='$id'";
 $sqlresult = mysqli_query($db, $sql);
@@ -90,8 +90,9 @@ $row = mysqli_fetch_assoc($sqlresult)
         </div>
       </div>
 
-
-      <p class="text-center buttons"><button class="btn btn-primary i fa fa-shopping-cart"> Add to cart</button></p>
+			<button id="product" pid="<?=$row['id']?>" class="btn btn-primary">
+				<span class="glyphicon glyphicon-shopping-cart" ></span> Add to cart
+		</button>
 
 
 
@@ -151,12 +152,12 @@ while ($product = mysqli_fetch_assoc($prodb)) {?>
         <h4><?=$product['title'];?></h4>
         <img class="img-thumb" src="img/<?=$product['image'];?>" alt="<?=$product['title'];?>">
         <p class="Price">$<?=$product['price'];?></p>
-        <a href="#" class="btn btn-success">
+        <a href="details.php?id=<?=$product['id'];?>" class="btn btn-success">
           Details
         </a>
-        <a href="#" class="btn btn-primary">
-          <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
-        </a>
+				<button id="product" pid="<?=$product['id']?>" class="btn btn-primary">
+					<span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
+			</button>
       </div>
     </div>
   <?php }?>
@@ -169,3 +170,4 @@ while ($product = mysqli_fetch_assoc($prodb)) {?>
 
 
 <?php include 'includes1/footer.php';?>
+  <script type="text/javascript" src="main.js"></script>

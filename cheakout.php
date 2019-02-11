@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 require_once 'core/db.php';
 include 'includes1/head.php';
 include 'includes1/navbar.php';

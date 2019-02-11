@@ -59,9 +59,9 @@ $prosql = "select * from product where cat= $id";
                             <a href="details.php?id=<?=$row3['id'];?>" class="btn btn-success">
                                 Details
                             </a>
-                            <a href="#" class="btn btn-primary">
+                              <button id="product" pid="<?=$row3['id']?>" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
-                            </a>
+                            </button>
                         </div>
                     </div>
                     <?php }?>
@@ -75,3 +75,4 @@ $prosql = "select * from product where cat= $id";
 
 
 <?php include 'includes1/footer.php';?>
+  <script type="text/javascript" src="main.js"></script>

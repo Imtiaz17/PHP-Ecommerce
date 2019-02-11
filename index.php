@@ -24,7 +24,7 @@ $featured = mysqli_query($db,$sql);
           <img class="img-thumb" src="img/<?= $product['image']; ?>" alt="<?= $product['title']; ?>">
           <p class="list-price text-danger"> Previous Price <s>$<?= $product['pp']; ?></s></p>
           <p class="Price"> <b>Now </b> $<?= $product['price']; ?></p>
-          <a href="#"  class="btn btn-success">
+          <a href="details.php?id=<?=$product['id'];?>"  class="btn btn-success">
             Details
           </a>
           <button id="product" pid="<?=$product['id']?>" class="btn btn-primary">
@@ -76,8 +76,6 @@ if ($catrun) {
                 <?php }
               } ?>
             </div>
-
-
             <div class="col-md-10">
               <?php
               $parentid = $catchild['id'];
@@ -95,11 +93,11 @@ if ($catrun) {
                       <img src="img/<?= $getchild['image']; ?>" alt="<?= $getchild['title']; ?>"
                       class="img-responsive">
                       <p class="Price"> <b>Price:</b> $<?= $getchild['price']; ?></p>
-                      <a href="#" class="btn btn-success">
+                      <a href="details.php?id=<?=$getchild['id'];?>" class="btn btn-success">
                         Details
                       </a>
                       <button id="product" pid="<?=$getchild['id']?>" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart 
                       </button>
                     </div>
                   </div>
