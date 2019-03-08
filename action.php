@@ -107,7 +107,7 @@ if (isset($_POST["get_cart"])|| isset($_POST['cheakout'])){
 
 if (isset($_POST['removeproduct'])) {
 	$removeid= $_POST['removeid'];
-	$userid=$sid;
+	$userid=$_SESSION['id'];
 	$sql5="delete from cart where p_id='$removeid' and u_id='$userid'";
 	$dbquery4=mysqli_query($db,$sql5);
 	if ($dbquery4) {
