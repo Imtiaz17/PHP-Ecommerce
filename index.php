@@ -17,7 +17,7 @@ $featured = mysqli_query($db,$sql);
 
 <div class="container">
   <div class="row">
-    <?php while ($product = $featured->fetch_assoc()) { ?>
+    <?php while ($product = mysqli_fetch_assoc($featured)) { ?>
       <div class="col-md-3 ">
         <div class="fp">
           <h4><?= $product['title']; ?></h4>
@@ -47,8 +47,7 @@ $featured = mysqli_query($db,$sql);
 <?php
 $catsql = "select * from categories where parent=0";
 $catrun = mysqli_query($db,$catsql);
-if ($catrun) {
-  while ($catchild = $catrun->fetch_assoc()) {
+  while ($catchild = mysqli_fetch_assoc($catrun)) {
     ?>
     <div class="container">
       <div class="panel panel-default sidebar">
@@ -64,8 +63,9 @@ if ($catrun) {
               $parentid = $catchild['id'];
               $childsql = "select * from categories where parent='$parentid'";
               $childrun = mysqli_query($db,$childsql);
-              if ($childrun) {
-                while ($childfetch = $childrun->fetch_assoc()) { ?>
+              // $childfetch = mysqli_fetch_assoc($childrun);
+              // var_dump($childfetch);
+                while ($childfetch = mysqli_fetch_assoc($childrun)) { ?>
 
                   <ul class="nav nav-pills nav-stacked category">
                     <li>
@@ -73,20 +73,16 @@ if ($catrun) {
                     </li>
 
                   </ul>
-                <?php }
-              } ?>
+                <?php }?>
             </div>
             <div class="col-md-10">
               <?php
-              $parentid = $catchild['id'];
-              $childsql = "select * from categories where parent='$parentid'";
               $childrun = mysqli_query($db,$childsql);
-              $childfetch = $childrun->fetch_assoc();
-              $childid = $childfetch['id'];
+              while ($childfetch = mysqli_fetch_assoc($childrun)){
+              $childid=$childfetch['id'];
               $childbox = "select * from product where cat='$childid'";
               $childresult = mysqli_query($db,$childbox);
-              if ($childresult) {
-                while ($getchild = $childresult->fetch_assoc()) { ?>
+              while ($getchild = mysqli_fetch_assoc($childresult)){?>
                   <div class="col-md-3 ">
                     <div class="product">
                       <h4><?= $getchild['title']; ?></h4>
@@ -101,14 +97,12 @@ if ($catrun) {
                       </button>
                     </div>
                   </div>
-                <?php } ?><?php } ?>
+                <?php } }?>
               </div>
             </div>
           </div>
         </div>
       </div>
-    <?php } ?><?php } else { ?>
-      <p>Data is not available </p>
     <?php } ?>
 
     <!--Category wise product end-->

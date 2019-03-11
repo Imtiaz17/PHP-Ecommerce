@@ -1,16 +1,16 @@
 <?php 
 session_start();
+require_once '../core/db.php';
 if (isset($_SESSION['id'])) {
 	header("Location: index.php");
 }
-require_once'../core/init.php';
-$conn= new Database();
+
 if (isset($_POST['submit'])) {
-	$email=sanitize($_POST['mail']);
-	$pass=sanitize($_POST['pass']);
+	$email=$_POST['mail'];
+	$pass=$_POST['pass'];
 
 	$result="select * from admin where email='$email' and password='$pass'";
-	$run=mysqli_query($conn->db,$result);
+	$run=mysqli_query($db,$result);
 	$cheak=mysqli_num_rows($run);
 	if ($cheak > 0) {
 		while ($row=mysqli_fetch_array($run)) {

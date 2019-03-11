@@ -18,9 +18,10 @@ $squery = mysqli_query($db,$sql2);
 //delete
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $delete_id = (int)$_GET['delete'];
-    $delete_id = sanitize($delete_id);
+    $delete_id = $delete_id;
     $sql = "delete from categories where id ='$delete_id'";
-    $edit_result = $conn->catdelete($sql);
+    $edit_result =mysqli_query($db,$sql);
+    
 }
 //edit
 if (isset($_GET['edit']) && !empty($_GET['edit'])) {

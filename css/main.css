@@ -376,3 +376,9 @@ img.details
 {
     margin-top: 13px;
 }
+#loading
+{
+    text-align: center;
+    background: url('loader.gif') no-repeat center;
+    height: 150px;
+}

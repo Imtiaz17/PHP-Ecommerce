@@ -2,9 +2,44 @@
 session_start();
 
 include'core/db.php';
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+}
+if (isset($_POST["action"])) {
+$query="select * from product where cat=$id";
 
-
-
+if (isset($_POST["brand"])) {
+	$brand_filter = implode(',',$_POST['brand']);
+	$query.="AND brand IN('.$brand_filter')";
+}
+$dbquery=mysqli_query($db,$query);
+	$count =mysqli_num_rows($dbquery);
+	 $output = '';
+	if ($count>0) {
+		while ($bf=mysqli_fetch_assoc($dbquery))
+		{
+			$output.='<div class="col-md-3 ">
+                        <div class="product">
+                            <h4><?=$bf["title"];?></h4>
+                            <img src="img/<?=$bf["image"];?>" alt="<?=$bf["title"];?>"
+                                 class="img-responsive">
+                            <p class="Price"><b>Price:</b> $<?=$bf["price"];?></p>
+                            <a href="details.php?id=<?=$bf["id"];?>" class="btn btn-success">
+                                Details
+                            </a>
+                              <button id="product" pid="<?=$bf["id"]?>" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
+                            </button>
+                        </div>
+                    </div>';
+		}
+	}
+	 else
+ {
+  $output = '<h3>No Data Found</h3>';
+ }
+ echo $output;
+}
 // 1.add product in to cart
 
 if (isset($_POST['add'])) {
@@ -26,8 +61,6 @@ if (isset($_POST['add'])) {
 		$name=$row['title'];
 		$image=$row['image'];
 		$price=$row['price'];
-		$qty=$row['qty'];
-
 		$sql3="INSERT INTO cart  (p_id,u_id,p_title,p_image,quantity,price,total)VALUES('$id','$user_id','$name','$image',1,'$price','$price')";
 		if (mysqli_query($db,$sql3)) {
 			echo "Product has been added to cart";

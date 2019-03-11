@@ -5,6 +5,7 @@ include 'includes1/catbar.php';
 include 'includes1/newsbar.php';
 include 'includes1/modaldetails.php';
 ?>
+
 <?php
 if (isset($_GET['id'])) {
 	$id = $_GET["id"];
@@ -22,14 +23,10 @@ $sqlresult = mysqli_query($db, $sql);
         </div>
         <div class="panel-body">
             <?php
-while ($row = mysqli_fetch_assoc($sqlresult)) {
-	?>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li>
-                            <a href="<?=$row['id']?>"><?=$row['brand_name'];?></a>
-                        </li>
-
-                    </ul>
+while ($row = mysqli_fetch_assoc($sqlresult)) {?>
+                    <div class="list-group-item checkbox">
+                            <label> <input type="checkbox" class="common_selector brand" value="<?=$row['brand_name']?>"><?=$row['brand_name']?></label>
+                    </div>
                 <?php }?>
         </div>
     </div>
@@ -46,25 +43,10 @@ while ($row2 = mysqli_fetch_assoc($catdb)) {
                     <p><?=$row2['category']?></p>
                 </div>
                 <div class="panel-body">
-                    <?php
-$prosql = "select * from product where cat= $id";
-	$prodb = mysqli_query($db, $prosql);
-	while ($row3 = mysqli_fetch_assoc($prodb)) {?>
-                    <div class="col-md-3 ">
-                        <div class="product">
-                            <h4><?=$row3['title'];?></h4>
-                            <img src="img/<?=$row3['image'];?>" alt="<?=$row3['title'];?>"
-                                 class="img-responsive">
-                            <p class="Price"><b>Price:</b> $<?=$row3['price'];?></p>
-                            <a href="details.php?id=<?=$row3['id'];?>" class="btn btn-success">
-                                Details
-                            </a>
-                              <button id="product" pid="<?=$row3['id']?>" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
-                            </button>
-                        </div>
+                    <div class="row filter_data">
+                
                     </div>
-                    <?php }?>
+
                 </div>
             <?php }?>
             </div>
@@ -73,6 +55,39 @@ $prosql = "select * from product where cat= $id";
     </div>
 
 
-
 <?php include 'includes1/footer.php';?>
-  <script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        filter_data();
+    function filter_data()
+    {
+        $('.filter_data').html('<div id="loading"style=""></div>');
+        var action='action';
+        var brand=get_filter('brand');
+        $.ajax({
+            url: 'action.php',
+            type: 'POST',
+            data: {action:action,brand:brand},
+            success:function(data)
+            {
+                $('.filter_data').html(data); 
+            }
+        });
+        
+    }
+    function get_filter(class_name) {
+            var filter=[];
+            $('.'+class_name+':checked').each(function() {
+                filter.push($(this).val());
+                return filter;
+            });
+        }   
+        $('.common_selector').click(function() {
+            filter_data();
+        }); 
+    });
+
+
+
+</script>

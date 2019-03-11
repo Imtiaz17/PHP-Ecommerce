@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION['id'])) {
 	header("Location: admin.php");
 }
+
 require_once '../core/db.php';
 include 'includes/head.php';
 include 'includes/navbar.php';
@@ -19,7 +20,8 @@ if (isset($_POST['submit'])) {
 	$brand = $_POST['brand'];
 	$cat = $_POST['subcat'];
 	$description = $_POST['des'];
-	$box = implode(",", $_POST['sizer']);
+    $size=$_POST['size'];
+	$size = implode(",", $size);
 	//image
 	$allowed = array('jpg', 'jpeg', 'png');
 	$pro_image = $_FILES['image']['name'];
@@ -39,7 +41,7 @@ if (isset($_POST['submit'])) {
 		$error = " Only jpg,jpeg,png file supported ";
 	} else {
 		move_uploaded_file($pro_temp, "../img/$pro_image");
-		$dbinsert = "INSERT INTO product (title,pp,price,brand,cat,image,description,size) VALUES ('$name','$pprice','$price','$brand','$cat','$pro_image','$description','$box') ";
+		$dbinsert = "INSERT INTO product (title,pp,price,brand,cat,size,image,description) values ('$name','$pprice','$price','$brand','$cat','$size','$pro_image','$description') ";
 		$create = mysqli_query($db, $dbinsert);
 		header('Location:product.php');
 	}
@@ -54,7 +56,7 @@ if (isset($_POST['submit'])) {
 <h2 class="text-center">Add a new product</h2>
 <hr>
 
-<form action="addproduct.php" method="post" enctype="multipart/form-data">
+<form action="addproduct.php" method="POST" enctype="multipart/form-data">
 
     <div class="form-group">
         <div class="row">
@@ -124,9 +126,9 @@ if (isset($_POST['submit'])) {
                 <div class="row">
                     <div class="col-md-3"><label for="size">Size</label></div>
                     <div class="col-md-6">
-                        <input type="checkbox"  name="sizer[]"  value="XL"> XL
-                        <input type="checkbox"  name="sizer[]"  value="L"> L
-                        <input type="checkbox"  name="sizer[]"  value="M"> M
+                        <input type="checkbox"  name="size[]"  value="XL"> XL
+                        <input type="checkbox"  name="size[]"  value="L"> L
+                        <input type="checkbox"  name="size[]"  value="M"> M
                     </div>
                 </div>
             </div>
@@ -164,15 +166,16 @@ if (isset($_POST['submit'])) {
 
 
     </div>
-    </div>
+   
 </form>
+ </div>
 <script>
     $(document).ready(function () {
         $('#cat').on('change', function () {//change function on country to display all state
             let catid = $(this).val();
             if (catid) {
                 $.ajax({
-                    type: 'POST',
+                    method: 'POST',
                     url: 'ajax.php',
                     data: 'catid=' + catid,
                     success: function (html) {

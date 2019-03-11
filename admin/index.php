@@ -4,14 +4,11 @@ if (!isset($_SESSION['id'])) {
 	header("Location: admin.php?msg=".urlencode('You are not an Admin! Please Log in'));
  		exit();
 }
-require_once '../core/init.php';
+require_once '../core/db.php';
 include 'includes/head.php';
  include 'includes/navbar.php';
  include 'includes/footer.php';
- $db= new Database();
- $sql="select * from admin order by id" ;
- $query=$db->getall($sql);
- 
+
 ?>
 <div class="row">
 	<div class="col-md-3"><?php if (isset($_GET['msg'])) {
@@ -22,7 +19,7 @@ include 'includes/head.php';
 	<h3 style="text-shadow: 0 0 3px #FF0000;">Welcome "<strong>
 		<?php 
 
-		echo $_SESSION["bid"];
+		echo  $_SESSION['bid'];
 		?>
 			
 		</strong>" To The Admin Panel Of All In One</h3>
@@ -43,7 +40,10 @@ include 'includes/head.php';
 			<th width="20%">Username</th>
 			<th width="20%">Email</th>
 			<th width="20%">Action</th>
-			<?php while ($result=mysqli_fetch_assoc($query)): ?>
+			<?php  
+			$sql="select * from admin order by id" ;
+			 $query=mysqli_query($db,$sql);
+			 while ($result=mysqli_fetch_assoc($query)): ?>
 			<tr>
 				<td><?=$result['id'] ;?></td>
 				<td><?=$result['name'] ;?></td>
