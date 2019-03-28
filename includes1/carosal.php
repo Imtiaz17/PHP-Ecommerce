@@ -19,8 +19,6 @@
             <div class="slider-details"><h4> Customers are our pride!</h4></div>
         </div>
     </div>
+    
 </div>
 <br>
-
-
-

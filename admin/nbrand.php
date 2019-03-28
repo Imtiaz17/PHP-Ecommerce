@@ -6,7 +6,9 @@ if (!isset($_SESSION['id'])) {
 }
 require_once '../core/db.php ';
 include 'includes/head.php';
-include 'includes/navbar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
+
 
 $sql2="SELECT * FROM categories where parent !=0";
 $cd= mysqli_query($db,$sql2);
@@ -159,3 +161,6 @@ if (isset($_POST['add'])) {
     }
 
 </script>
+<?php
+include 'includes/footer.php';
+?>

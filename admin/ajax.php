@@ -16,7 +16,7 @@ if (isset($_POST['username'])) {
     echo "No Data available";
 }
 
-
+//subcategory for adding product
 if(isset($_POST["catid"]) && !empty($_POST["catid"])){
 
     //Get all state data
@@ -24,6 +24,25 @@ if(isset($_POST["catid"]) && !empty($_POST["catid"])){
     $sqldb = "SELECT * FROM categories WHERE parent='$cat'";
     $querydb = mysqli_query($db, $sqldb);
   if (mysqli_num_rows($querydb) > 0) {
+        echo '<option value="">Select Subcategory</option>';
+        while($row = mysqli_fetch_assoc($querydb)){
+            echo '<option value="'.$row['id'].'">'.$row['category'].'</option>';
+        }
+    }else{
+        echo '<option value="">Subcategory not available</option>';
+    }
+}
+
+//subcategory for updating product
+if(isset($_POST["subcat"]) && !empty($_POST["subcat"])){
+
+    //Get all state data
+    $subcat = $_POST['subcat'];
+    $subcatdb= mysqli_query($db,"SELECT * FROM categories WHERE category='$subcat'");
+    $subcatfetch = mysqli_fetch_assoc($subcatdb);
+    $subcatid=$subcatfetch['id'];
+    $querydb=mysqli_query($db,"select * from categories where parent='$subcatid'");
+    if (mysqli_num_rows($querydb) > 0) {
         echo '<option value="">Select Subcategory</option>';
         while($row = mysqli_fetch_assoc($querydb)){
             echo '<option value="'.$row['id'].'">'.$row['category'].'</option>';

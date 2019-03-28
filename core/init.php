@@ -79,6 +79,16 @@ class Database
             die($this->db->error);
         }
     }
+    public function productupdate($query)
+    {
+        $productupdate = $this->db->query($query);
+        if ($productupdate) {
+            header("Location: product.php?msg=" . urlencode('Data Updated Successfully! '));
+            exit();
+        } else {
+            die($this->db->error);
+        }
+    }
 
     public function brandupdate($query)
     {
@@ -140,7 +150,7 @@ class Database
     public function getall($query)
     {
         $result = $this->db->query($query);
-        if ($result->num_rows > 0) {
+        if ($result->num_rows> 0) {
             return $result;
         } else {
             return false;

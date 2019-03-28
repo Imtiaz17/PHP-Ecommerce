@@ -69,7 +69,6 @@ if (isset($_POST['add'])) {
 <?php if (isset($error)) {
     echo "<h4 style='color:red'>" . $error . "</h4>";
 } ?>
-<center><h2>Add Brand</h2></center>
 <hr>
 <?php if (isset($_GET['msg'])) {
     echo "<h3  style='color:green' >" . $_GET['msg'] . "</h3>";

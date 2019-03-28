@@ -36,8 +36,6 @@ $featured = mysqli_query($db,$sql2);
           </div>
           <div class="panel-body">
             <div id="cart_product">
-
-
             </div>
           </div>
           <div class="panel-footer">
@@ -48,3 +46,4 @@ $featured = mysqli_query($db,$sql2);
     </ul>
     </ul>
 </nav>
+

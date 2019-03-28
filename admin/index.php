@@ -58,4 +58,4 @@ include 'includes/head.php';
 		
 		</table>
 	</div>
-</div></div>
+</div>

@@ -5,7 +5,11 @@ if (!isset($_SESSION['id'])) {
 }
 require_once '../core/init.php';
 include 'includes/head.php';
-include 'includes/navbar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
+
+
+
 $conn = new Database();
 $bsql = "SELECT * FROM brand ";
 $csql = "SELECT * FROM categories where parent=0";
@@ -76,158 +80,174 @@ if (isset($_POST['submit'])) {
 <?php if (isset($error)) {
     echo "<h4 style='color:red'>" . $error . "</h4>";
 } ?>
-<h2 class="text-center">Add a new product</h2>
-<a href="product.php" class="btn btn-default pull-right id=" product" style="margin-top: -30px;" >Cancel</a>
-<hr>
-
-<form action="edit.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><b>Title</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" name="title" value="<?= $pro_title; ?>" class="form-control">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><b>Brand</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-control" name="brand">
-
-                            <option value="<?= $pro_brand; ?>"><?= $pro_brand; ?></option>
-                            <?php while ($brandresult = mysqli_fetch_assoc($bquery)) : ?>
-                                <option value="<?= $brandresult['brand']; ?>"<?= ((isset($_POST['brand']) && $_POST['brand'] == $brandresult['id']) ? 'selected' : ''); ?>><?= $brandresult['brand']; ?></option>
-                            <?php endwhile; ?>
-
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><b>Category</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-control" name="cat" id="cat">
-                            <option value="<?= $pfetch['category']; ?>"><?= $pfetch['category']; ?></option>
-                            <?php while ($catresult = mysqli_fetch_assoc($cquery)) : ?>
-                                <option value="<?= $catresult['id']; ?>"<?= ((isset($_POST['category']) && $_POST['category'] == $catresult['id']) ? 'selected' : ''); ?>><?= $catresult['category']; ?></option>
-                            <?php endwhile; ?>
-
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><b>Sub-Category</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-control" name="child" id="child">
-                            <option value="<?= $catf['id']; ?>"><?= $catf['category']; ?></option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><b>Previous Price</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" name="pprice" value="<?= $pro_price; ?>" class="form-control">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><b>Price</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" name="price" value="<?= $price; ?>"
-                               class="form-control">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
 
 
-        <br>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><b>Image</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="file" name="image" id="image" class="form-control">
-                        <img src="../images/<?= $pro_image; ?>" alt="img" style="width:100px; height: 100px;">
-                    </div>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Product</h3>
                 </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><b>Description</b></h4>
-                    </div>
-                    <div class="col-md-6">
+                <a href="product.php" class="btn btn-default pull-right id=" product" style="margin-top: -30px;" >Cancel</a>
+                <form action="edit.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4><b>Title</b></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="title" value="<?= $pro_title; ?>" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4><b>Brand</b></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="brand">
+
+                                                <option value="<?= $pro_brand; ?>"><?= $pro_brand; ?></option>
+                                                <?php while ($brandresult = mysqli_fetch_assoc($bquery)) : ?>
+                                                    <option value="<?= $brandresult['brand']; ?>"<?= ((isset($_POST['brand']) && $_POST['brand'] == $brandresult['id']) ? 'selected' : ''); ?>><?= $brandresult['brand']; ?></option>
+                                                <?php endwhile; ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4><b>Category</b></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="cat" id="cat">
+                                                <option value="<?= $pfetch['category']; ?>"><?= $pfetch['category']; ?></option>
+                                                <?php while ($catresult = mysqli_fetch_assoc($cquery)) : ?>
+                                                    <option value="<?= $catresult['id']; ?>"<?= ((isset($_POST['category']) && $_POST['category'] == $catresult['id']) ? 'selected' : ''); ?>><?= $catresult['category']; ?></option>
+                                                <?php endwhile; ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4><b>Sub-Category</b></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="child" id="child">
+                                                <option value="<?= $catf['id']; ?>"><?= $catf['category']; ?></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4><b>Previous Price</b></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="pprice" value="<?= $pro_price; ?>" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4><b>Price</b></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="price" value="<?= $price; ?>"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4><b>Image</b></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="file" name="image" id="image" class="form-control">
+                                            <img src="../images/<?= $pro_image; ?>" alt="img" style="width:100px; height: 100px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4><b>Description</b></h4>
+                                        </div>
+                                        <div class="col-md-6">
                         <textarea rows="5" name="description" value="<?= $pro_des; ?>"
                                   class="form-control"><?= $pro_des; ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="submit" name="submit" value="Update product"
+                                           class="form-control  btn btn-success pull-right">
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-
-        <br>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <input type="submit" name="submit" value="Update product"
-                       class="form-control  btn btn-success pull-right">
-            </div>
-        </div>
-
-
     </div>
-</form>
+</section>
+<?php
+include 'includes/footer.php';
+?>
 <script>
     function get_child_options() {
         let parentID = jQuery('#cat').val();

@@ -2,7 +2,7 @@
 session_start();
 require_once '../core/db.php';
 if (isset($_SESSION['id'])) {
-	header("Location: index.php");
+	header("Location: home.php");
 }
 
 if (isset($_POST['submit'])) {
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
 			 $_SESSION['id']=$row['id'];
 
 		}
-		header("Location: index.php");
+		header("Location: home.php");
 	}
 	else
 	{

@@ -1,4 +1,5 @@
 //addproduct
+cart_count();
 $("body").delegate("#product","click",function(event){
 	event.preventDefault();
 	var p_id=$(this).attr('pid');
@@ -8,12 +9,14 @@ $("body").delegate("#product","click",function(event){
 		data: {add:1,p_id:p_id},
 		success: function (data) {
 			alert(data);
+			cart_count();
 
 		}
 	})
 
 
 })
+
 //hover cart to see cart
 $("#cart").hover(function (event) {
 	event.preventDefault();
@@ -27,6 +30,21 @@ $("#cart").hover(function (event) {
 		}
 	})
 })
+
+//total product in cart
+function cart_count(){
+	$.ajax({
+		url: 'action.php',
+		type: 'POST',
+		data: {cart_count:1},
+		success: function (data) {
+			$(".badge").html(data)
+
+		}
+		
+	});
+	
+}
 
 
 //cheakout page load

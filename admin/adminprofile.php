@@ -5,7 +5,8 @@ if (!isset($_SESSION['id'])){
 }
 require_once '../core/init.php'; 
 include 'includes/head.php';
- include 'includes/navbar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
  $conn= new Database();
 
 
@@ -17,6 +18,7 @@ include 'includes/head.php';
 	$getdata=mysqli_fetch_assoc($getCon);
 
 }
+
 ?>
 <?php 
 
@@ -41,7 +43,7 @@ include 'includes/head.php';
 <div class="container">
 <div class="panel panel-default">
 	<div class="panel-heading">
-	<h4>Admin Profile <span class="pull-right"> <a class="btn btn-primary"  href="index.php">Back</a></span></h4>
+	<h4>Admin Profile <span class="pull-right"> <a class="btn btn-primary"  href="http://localhost/php-ecommerce/admin/home.php">Back</a></span></h4>
 		</div>
 	<?php if (isset($error)) {
 	echo "<h4 style='color:red'>".$error."</h4>";

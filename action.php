@@ -1,45 +1,46 @@
 <?php
 session_start();
-
 include'core/db.php';
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-}
+
 if (isset($_POST["action"])) {
-$query="select * from product where cat=$id";
+$query="select * from product where cat=id ";
+}
 
 if (isset($_POST["brand"])) {
 	$brand_filter = implode(',',$_POST['brand']);
-	$query.="AND brand IN('.$brand_filter')";
-}
+	$query="select * from product where brand IN ('$brand_filter')";
+
 $dbquery=mysqli_query($db,$query);
 	$count =mysqli_num_rows($dbquery);
 	 $output = '';
 	if ($count>0) {
 		while ($bf=mysqli_fetch_assoc($dbquery))
 		{
+
 			$output.='<div class="col-md-3 ">
                         <div class="product">
-                            <h4><?=$bf["title"];?></h4>
-                            <img src="img/<?=$bf["image"];?>" alt="<?=$bf["title"];?>"
-                                 class="img-responsive">
-                            <p class="Price"><b>Price:</b> $<?=$bf["price"];?></p>
-                            <a href="details.php?id=<?=$bf["id"];?>" class="btn btn-success">
+                         <h3>'.$bf["title"].'</h3>
+                         <img src="img/'. $bf['image'] .'" class="img-responsive" >
+                            <p class="Price"><b>Price:</b>'.$bf["price"].' </p>
+                            <a href="details.php?id='.$bf['id'].'" class="btn btn-success">
                                 Details
                             </a>
-                              <button id="product" pid="<?=$bf["id"]?>" class="btn btn-primary">
+                              <button id="product" pid='.$bf["id"].' class="btn btn-primary">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
                             </button>
+                           
                         </div>
                     </div>';
-		}
-	}
-	 else
- {
-  $output = '<h3>No Data Found</h3>';
- }
- echo $output;
-}
+
+                }
+            }
+            else
+		 {
+		  $output = '<h3>No Data Found</h3>';
+		 }
+		 echo $output;
+        }
+
 // 1.add product in to cart
 
 if (isset($_POST['add'])) {
@@ -136,7 +137,22 @@ if (isset($_POST["get_cart"])|| isset($_POST['cheakout'])){
 	}
 }
 
-//3. remove product from cart
+
+
+//3. Cart count
+if (isset($_POST["cart_count"])) {
+	if (isset($_SESSION['id'])) {
+	$user_id=$_SESSION['id'];
+	$cartsql="select * from cart where u_id='$user_id'";
+	$dbcart=mysqli_query($db,$cartsql);
+	echo mysqli_num_rows($dbcart) ;
+
+}
+}
+
+
+
+//4. remove product from cart
 
 if (isset($_POST['removeproduct'])) {
 	$removeid= $_POST['removeid'];
@@ -151,7 +167,7 @@ if (isset($_POST['removeproduct'])) {
 
 }
 
-//4. update product from cart
+//5. update product from cart
 
 if (isset($_POST['updateproduct'])) {
 	$updateid= $_POST['updateid'];

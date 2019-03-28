@@ -84,3 +84,47 @@ if (isset($_GET['featured'])) {
     <?php endwhile; ?>
     </tbody>
 </table>
+
+
+
+
+
+
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<body>
+<p> &nbsp; </p>
+Text Changing - 
+<p> &nbsp; </p>
+<section>
+<div class="row">
+    <span class="col-lg-6 col-md-6 col-xs-6">
+    <div class="row text-center">
+    <button class='btn btn-info pushme'>PUSH ME</button>
+    </div>
+    <div class="row">
+    </div>
+    </span>
+</div>
+
+
+
+</section>
+</body>
+$(document).ready(function(){
+
+ 
+    $(".pushme").click(function () {
+       $(this).text("sucess");
+       $(this).addClass("btn-success");
+       $(this).removeClass("btn-info");
+    });
+    
+    
+
+
+});

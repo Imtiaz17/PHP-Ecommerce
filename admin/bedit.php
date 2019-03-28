@@ -6,7 +6,8 @@ if (!isset($_SESSION['id'])) {
 }
 require_once '../core/db.php ';
 include 'includes/head.php';
-include 'includes/navbar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
 
 $sql = "SELECT * FROM categories where parent=0";
 $pquery = $db->query($sql);

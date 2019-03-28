@@ -5,7 +5,8 @@ if (!isset($_SESSION['id'])){
 }
 require_once '../core/init.php';
 include 'includes/head.php';
-include 'includes/navbar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
 include 'user.php';
 ?>
 <?php
@@ -20,7 +21,7 @@ include 'user.php';
 <div class="container">
 <div class="panel panel-default">
 	<div class="panel-heading">
-	<h4>Admin Registration</h4>''
+	<h4>Admin Registration</h4>
 		</div>
 		<div class="panel-body" style="max-width: 600px; margin: 0 auto">
 			<?php
@@ -85,3 +86,6 @@ function chkName()
 		</div>
 	</div>
 </div>
+<?php
+include 'includes/footer.php';
+?>

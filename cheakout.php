@@ -24,10 +24,16 @@ include 'includes1/newsbar.php';
       </b>
       </div>
       <br>
+      <form action="payment.php" method="post">
       <div id="cheakout"></div>
+       <input type="submit" style="float: right;" class="btn btn-success" value="proceed to chekcout" >
+     </form>
+
     </div>
   </div>
+
   </div>
+
 </div>
 
 

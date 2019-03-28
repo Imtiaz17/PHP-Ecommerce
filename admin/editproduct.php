@@ -40,7 +40,6 @@ if ( isset($_POST['submit'])) {
 
 		move_uploaded_file($pro_temp, "../images/$pro_image");
 $dbinsert="update product set title='$pro_name',price='$pro_price',list_price='$pro_list_price',brand='$pro_brand',cat='$pro_cat',image='$pro_image',description='$pro_description' where id ='$id'";
-
 $final=mysqli_query($conn,$dbinsert);
     	 if ($final == true) {echo "pro inserted";}
     	 else {echo mysqli_error($conn);} 

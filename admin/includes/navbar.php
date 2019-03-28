@@ -13,6 +13,7 @@
 
      <li><a href="registration.php"><i class="glyphicon glyphicon-registration-mark"></i> Registration</a></li>
       <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+      
     </ul>
   </div>
 </nav>

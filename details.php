@@ -7,125 +7,125 @@ include 'includes1/modaldetails.php';
 ?>
 <?php
 if (isset($_GET['id'])) {
-	 $id = $_GET["id"];
+    $id = $_GET["id"];
 }
 $sql = "select * from product where id='$id'";
 $sqlresult = mysqli_query($db, $sql);
 $row = mysqli_fetch_assoc($sqlresult)
 ?>
 <div class="container">
- <div class="row">
-  <div class="col-md-3">
-    <div class="panel panel-default sidebar">
-      <div class="panel-heading">
-        <div class="panel-title">
-          Categories
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default sidebar">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        Categories
+                    </div>
+                </div>
+                <div class="panel-body">
+
+                    </ul>
+
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="panel-body">
+        <div class="col-md-9"><!-- col-md-9 Begin -->
+            <div id="productMain" class="row"><!-- row Begin -->
+                <div class="col-md-6"><!-- col-sm-6 Begin -->
+                    <div class="ui"><!-- #mainImage Begin -->
+                        <img src="img/<?=$row['image'];?>" alt="<?=$row3['title'];?>"
+                             class="img-responsive">
+                    </div><!-- mainImage Finish -->
+                </div><!-- col-sm-6 Finish -->
 
-        </ul>
+                <div class="col-md-6"><!-- col-md-6 Begin -->
+                    <div class="panel panel-default sidebar">
 
-    </div>
-  </div>
-</div>
-<div class="col-md-9"><!-- col-md-9 Begin -->
- <div id="productMain" class="row"><!-- row Begin -->
-   <div class="col-md-6"><!-- col-sm-6 Begin -->
-    <div class="ui"><!-- #mainImage Begin -->
-      <img src="img/<?=$row['image'];?>" alt="<?=$row3['title'];?>"
-      class="img-responsive">
-    </div><!-- mainImage Finish -->
-  </div><!-- col-sm-6 Finish -->
+                        <div class="panel-heading">
+                            <h4 class="text-center"><?=$row['title']?><h4>
+                        </div>
+                        <div class="panel-body">
 
-  <div class="col-md-6"><!-- col-md-6 Begin -->
-   <div class="panel panel-default sidebar">
+                            <form action="details.php" class="form-horizontal" method="post"><!-- form-horizontal Begin -->
+                                <div class="form-group"><!-- form-group Begin -->
+                                    <label for="" class="col-md-5 control-label">Products Quantity</label>
 
-    <div class="panel-heading">
-     <h4 class="text-center"><?=$row['title']?><h4>
-     </div>
-     <div class="panel-body">
+                                    <div class="col-md-7"><!-- col-md-7 Begin -->
+                                        <select name="product_qty" id="" class="form-control"><!-- select Begin -->
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select><!-- select Finish -->
 
-       <form action="details.php" class="form-horizontal" method="post"><!-- form-horizontal Begin -->
-         <div class="form-group"><!-- form-group Begin -->
-           <label for="" class="col-md-5 control-label">Products Quantity</label>
+                                    </div><!-- col-md-7 Finish -->
 
-           <div class="col-md-7"><!-- col-md-7 Begin -->
-            <select name="product_qty" id="" class="form-control"><!-- select Begin -->
-             <option>1</option>
-             <option>2</option>
-             <option>3</option>
-             <option>4</option>
-             <option>5</option>
-           </select><!-- select Finish -->
+                                </div><!-- form-group Finish -->
 
-         </div><!-- col-md-7 Finish -->
+                                <div class="form-group"><!-- form-group Begin -->
+                                    <label class="col-md-5 control-label">Product Size</label>
 
-       </div><!-- form-group Finish -->
+                                    <div class="col-md-7"><!-- col-md-7 Begin -->
 
-       <div class="form-group"><!-- form-group Begin -->
-         <label class="col-md-5 control-label">Product Size</label>
+                                        <select name="product_size" class="form-control"><!-- form-control Begin -->
 
-         <div class="col-md-7"><!-- col-md-7 Begin -->
+                                            <option disabled selected value>Select a Size</option>
+                                            <option>Small</option>
+                                            <option>Medium</option>
+                                            <option>Large</option>
 
-           <select name="product_size" class="form-control"><!-- form-control Begin -->
+                                        </select><!-- form-control Finish -->
 
-             <option disabled selected value>Select a Size</option>
-             <option>Small</option>
-             <option>Medium</option>
-             <option>Large</option>
+                                    </div><!-- col-md-7 Finish -->
+                                </div><!-- form-group Finish -->
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label  for="price" class="col-md-12 control-label">Prize</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <p name='price' >BDT <?=$row['price']?></p>
+                                        </div>
+                                    </div>
+                                </div>
 
-           </select><!-- form-control Finish -->
-
-         </div><!-- col-md-7 Finish -->
-       </div><!-- form-group Finish -->
-       <div class="form-group">
-         <div class="row">
-           <div class="col-md-5">
-            <label  for="price" class="col-md-12 control-label">Prize</label>
-          </div>
-          <div class="col-md-7">
-            <p name='price' >BDT <?=$row['price']?></p>
-          </div>
-        </div>
-      </div>
-
-			<button id="product" pid="<?=$row['id']?>" class="btn btn-primary">
-				<span class="glyphicon glyphicon-shopping-cart" ></span> Add to cart
-		</button>
+                                <button id="product" pid="<?=$row['id']?>" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-shopping-cart" ></span> Add to cart
+                                </button>
 
 
 
 
-    </form><!-- form-horizontal Finish -->
+                            </form><!-- form-horizontal Finish -->
 
 
-  </div><!-- box Finish -->
+                        </div><!-- box Finish -->
 
-</div><!-- panel default finish -->
-
-
-
-
-</div><!-- Row finish -->
+                    </div><!-- panel default finish -->
 
 
 
-</div><!-- Row finish -->
-<div class="box" id="details"><!-- box Begin -->
 
- <h2>Product Details</h2>
+                </div><!-- Row finish -->
 
- <div class="panel panel-default">
-  <div class="panel-body">
-    <p><?=$row['description']?></p>
 
-  </div>
-</div>
-</div>
-</div><!-- Row finish -->
 
-</div><!-- Row finish -->
+            </div><!-- Row finish -->
+            <div class="box" id="details"><!-- box Begin -->
+
+                <h2>Product Details</h2>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p><?=$row['description']?></p>
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row finish -->
+
+    </div><!-- Row finish -->
 
 
 
@@ -136,32 +136,32 @@ $row = mysqli_fetch_assoc($sqlresult)
 
 
 <div class="container">
-  <hr>
-  <div class="header">
-    <h2 class="text-center">Product you may be like</h2>
-  </div>
-  <br>
-
-  <div class="row">
-   <?php
-$prosql = "SELECT * FROM product Orders LIMIT 2";
-$prodb = mysqli_query($db, $prosql);
-while ($product = mysqli_fetch_assoc($prodb)) {?>
-     <div class="col-md-3 ">
-      <div class="fp">
-        <h4><?=$product['title'];?></h4>
-        <img class="img-thumb" src="img/<?=$product['image'];?>" alt="<?=$product['title'];?>">
-        <p class="Price">$<?=$product['price'];?></p>
-        <a href="details.php?id=<?=$product['id'];?>" class="btn btn-success">
-          Details
-        </a>
-				<button id="product" pid="<?=$product['id']?>" class="btn btn-primary">
-					<span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
-			</button>
-      </div>
+    <hr>
+    <div class="header">
+        <h2 class="text-center">Product you may be like</h2>
     </div>
-  <?php }?>
-</div>
+    <br>
+
+    <div class="row">
+        <?php
+        $prosql = "SELECT * FROM product Orders LIMIT 2";
+        $prodb = mysqli_query($db, $prosql);
+        while ($product = mysqli_fetch_assoc($prodb)) {?>
+            <div class="col-md-3 ">
+                <div class="fp">
+                    <h4><?=$product['title'];?></h4>
+                    <img class="img-thumb" src="img/<?=$product['image'];?>" alt="<?=$product['title'];?>">
+                    <p class="Price">$<?=$product['price'];?></p>
+                    <a href="details.php?id=<?=$product['id'];?>" class="btn btn-success">
+                        Details
+                    </a>
+                    <button id="product" pid="<?=$product['id']?>" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
+                    </button>
+                </div>
+            </div>
+        <?php }?>
+    </div>
 </div><!-- col-md-3 col-sm-6 center-responsive Finish -->
 
 
@@ -170,4 +170,4 @@ while ($product = mysqli_fetch_assoc($prodb)) {?>
 
 
 <?php include 'includes1/footer.php';?>
-  <script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="main.js"></script>
