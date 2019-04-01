@@ -24,11 +24,13 @@ include 'includes1/newsbar.php';
       </b>
       </div>
       <br>
-      <form action="payment.php" method="post">
+      <?php if (isset($_SESSION['id'])) {?>
+       <form action="payment.php" method="post">
       <div id="cheakout"></div>
        <input type="submit" style="float: right;" class="btn btn-success" value="proceed to chekcout" >
      </form>
-
+      <?php } ?>
+      
     </div>
   </div>
 

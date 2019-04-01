@@ -3,12 +3,13 @@ session_start();
 include'core/db.php';
 
 if (isset($_POST["action"])) {
-$query="select * from product where cat=id ";
-}
+	$id=$_POST['id'];
+$query="select * from product where cat='$id' ";
 
 if (isset($_POST["brand"])) {
 	$brand_filter = implode(',',$_POST['brand']);
 	$query="select * from product where brand IN ('$brand_filter')";
+}
 
 $dbquery=mysqli_query($db,$query);
 	$count =mysqli_num_rows($dbquery);
@@ -17,18 +18,21 @@ $dbquery=mysqli_query($db,$query);
 		while ($bf=mysqli_fetch_assoc($dbquery))
 		{
 
-			$output.='<div class="col-md-3 ">
-                        <div class="product">
-                         <h3>'.$bf["title"].'</h3>
-                         <img src="img/'. $bf['image'] .'" class="img-responsive" >
+			$output.='<div class="col-md-3 wrap">
+                        <div class="product">                
+                         <img src="img/'. $bf['image'] .'"; height="180" width="170" >
+                         <div class="text-center">
+                         <h4>'.$bf["title"].'</h4>
                             <p class="Price"><b>Price:</b>'.$bf["price"].' </p>
+                            </div>
+                            <div class="button text-center">
                             <a href="details.php?id='.$bf['id'].'" class="btn btn-success">
                                 Details
                             </a>
                               <button id="product" pid='.$bf["id"].' class="btn btn-primary">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
                             </button>
-                           
+                           </div>
                         </div>
                     </div>';
 
@@ -40,6 +44,7 @@ $dbquery=mysqli_query($db,$query);
 		 }
 		 echo $output;
         }
+    
 
 // 1.add product in to cart
 
@@ -75,7 +80,7 @@ if (isset($_POST['add'])) {
 	}
 }
 // 2.cheakout page load from db
-if (isset($_POST["get_cart"])|| isset($_POST['cheakout'])){
+if (isset($_POST["get_cart"])||isset($_POST['cheakout'])){
 	if (isset($_SESSION['id'])) {
 	$user_id=$_SESSION['id'];
 	$sql4="select * from cart where u_id='$user_id'";

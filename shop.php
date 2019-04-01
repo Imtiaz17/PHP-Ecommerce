@@ -3,7 +3,7 @@ include 'includes1/head.php';
 include 'includes1/navbar.php';
 include 'includes1/catbar.php';
 include 'includes1/newsbar.php';
-include 'includes1/modaldetails.php';
+
 ?>
 
 <?php

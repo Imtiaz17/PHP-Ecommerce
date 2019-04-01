@@ -1,10 +1,12 @@
+
 <?php require_once 'core/db.php';
 include 'includes1/head.php';
 include 'includes1/navbar.php';
 include 'includes1/catbar.php';
 include 'includes1/newsbar.php';
 include 'includes1/carosal.php';
-include 'includes1/modaldetails.php';
+
+
 $sql = "select * from product where featured=1";
 $featured = mysqli_query($db,$sql);
 ?>
@@ -83,19 +85,24 @@ $catrun = mysqli_query($db,$catsql);
               $childbox = "select * from product where cat='$childid'";
               $childresult = mysqli_query($db,$childbox);
               while ($getchild = mysqli_fetch_assoc($childresult)){?>
-                  <div class="col-md-3 ">
+                  <div class="col-md-3 wrap">
                     <div class="product">
-                      <h4><?= $getchild['title']; ?></h4>
-                      <img src="img/<?= $getchild['image']; ?>" alt="<?= $getchild['title']; ?>"
-                      class="img-responsive">
-                      <p class="Price"> <b>Price:</b> $<?= $getchild['price']; ?></p>
-                      <a href="details.php?id=<?=$getchild['id'];?>" class="btn btn-success">
+                      <img src="img/<?= $getchild['image']; ?>"alt="<?= $getchild['title'];?>" height="200" width="180">
+                      <div class="text-center">
+                        <h4><?= $getchild['title']; ?></h3>
+                        <p> <b>Price:</b> $<?= $getchild['price']; ?></p>
+                      </div>
+                       
+                      <div class="button text-center">
+                     
+                      <a href="details.php?id=<?=$getchild['id'];?>" class="btn btn-primary">
                         Details
                       </a>
-                      <button id="product" pid="<?=$getchild['id']?>" class="btn btn-primary">
+                      <button id="product" pid="<?=$getchild['id']?>" class="btn btn-success">
                         <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart 
                       </button>
-                    </div>
+                      </div>
+                   </div>
                   </div>
                 <?php } }?>
               </div>
@@ -105,23 +112,6 @@ $catrun = mysqli_query($db,$catsql);
       </div>
     <?php } ?>
 
-    <!--Category wise product end-->
+<?php include 'includes1/footer.php';?>
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
-
-    <script type="text/javascript">
-    $(document).ready(function () {
-      $('.carosal').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-      });
-    });
-  </script>
-
-</body>
-</html>
+    

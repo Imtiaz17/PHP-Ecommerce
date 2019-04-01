@@ -49,6 +49,7 @@ function cart_count(){
 
 //cheakout page load
 cheakout();
+
 function cheakout()
 {
 	$.ajax({
