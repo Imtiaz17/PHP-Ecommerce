@@ -50,6 +50,7 @@ $dbquery=mysqli_query($db,$query);
 
 if (isset($_POST['add'])) {
 	if (isset($_SESSION['id'])) {
+		
 	$pid=$_POST['p_id'];
 	$user_id=$_SESSION['id'];
 	$sql="select * from cart where p_id='$pid' and u_id='$user_id'";
@@ -57,6 +58,21 @@ if (isset($_POST['add'])) {
 	$count =mysqli_num_rows($dbquery);
 	if ($count>0) {
 		echo "Product has been added coninue shopping....";
+	}
+	elseif(isset($_POST['qty']))
+	{
+		$quantity=$_POST['qty'];
+		$sql2="select * from product where id='$pid'";
+		$dbquery2=mysqli_query($db,$sql2);
+		$row=mysqli_fetch_assoc($dbquery2);
+		$id=$row['id'];
+		$name=$row['title'];
+		$image=$row['image'];
+		$price=$row['price'];
+		$sql3="INSERT INTO cart  (p_id,u_id,p_title,p_image,quantity,price,total)VALUES('$id','$user_id','$name','$image',$quantity,'$price','$price')";
+		if (mysqli_query($db,$sql3)) {
+			echo "Product has been added to cart";
+		}
 	}
 	else
 	{
@@ -72,7 +88,7 @@ if (isset($_POST['add'])) {
 			echo "Product has been added to cart";
 		}
 
-}
+	}
 	}
 	else {
 		echo"Please login to add" ;

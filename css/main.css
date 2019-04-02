@@ -4,13 +4,20 @@ body
   padding: 0;
 	padding-top: 0;
 	padding-bottom: 10px;
+  font-family: 'Noto Serif', serif;
+   font-size: 16px;
+   background-color: #F3F3F3;
+
 }
 .wrap{
     position: relative;
     padding: 0;
     border: 1px solid white;
 }
-
+.ui
+{
+    margin-top: 20px;
+}
 .button{
     position: absolute;
     top: 50%;
@@ -32,7 +39,7 @@ body
     border: solid 1px #e6e6e6;
     margin: 10px;
     box-sizing: border-box;
-    padding: 8px;
+    padding: 2px;
     max-height: 300px;
     
 
@@ -369,7 +376,6 @@ img.details
 }
 .head
 {
-    background: #00a8ff;
     margin: 0 0 30px;
     border: solid 1px #e6e6e6;
     box-sizing: border-box;
@@ -378,6 +384,21 @@ img.details
     margin-top: -20px;
 
 }
+.header h2
+{
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 80px;
+}
+.details
+{
+   margin-top: 40px;
+}
+.description
+{
+    margin-left: 20px;
+}
+
 .sidebar
 {
     margin-top:10px;
@@ -399,11 +420,11 @@ img.details
 }
 .allcat
 {
-    background: #8c7ae6;
-    margin: 0 0 30px;
+    
+    margin: 0 0 10px;
     border: solid 1px #e6e6e6;
     box-sizing: border-box;
-    padding: 4px;
+    padding: 0px;
     box-shadow: 0px 2px 5px rgba(0,0,0,.3);
 
 }

@@ -1,4 +1,4 @@
-
+<div class="container">
 <div class="carosal">
     <div class="item"><img src="img/e1.jpg" alt="">
         <div class="slider-contant">
@@ -20,5 +20,6 @@
         </div>
     </div>
     
+</div>
 </div>
 <br>

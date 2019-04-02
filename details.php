@@ -15,70 +15,44 @@ $row = mysqli_fetch_assoc($sqlresult)
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <div class="panel panel-default sidebar">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        Categories
-                    </div>
-                </div>
-                <div class="panel-body">
-
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9"><!-- col-md-9 Begin -->
-            <div id="productMain" class="row"><!-- row Begin -->
-                <div class="col-md-6"><!-- col-sm-6 Begin -->
-                    <div class="ui"><!-- #mainImage Begin -->
+        <div class="col-md-12">
+            <div id="productMain" class="row">
+                <div class="col-md-6">
+                    <div class="ui">
                         <img src="img/<?=$row['image'];?>" alt="<?=$row3['title'];?>"
                              class="img-responsive">
-                    </div><!-- mainImage Finish -->
-                </div><!-- col-sm-6 Finish -->
-
-                <div class="col-md-6"><!-- col-md-6 Begin -->
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="panel panel-default sidebar">
-
                         <div class="panel-heading">
-                            <h4 class="text-center"><?=$row['title']?><h4>
+                            <h3 class="text-center"><?=$row['title']?><h3>
                         </div>
                         <div class="panel-body">
-
-                            <form action="details.php" class="form-horizontal" method="post"><!-- form-horizontal Begin -->
-                                <div class="form-group"><!-- form-group Begin -->
+                            <form action="details.php" class="form-horizontal" method="post">
+                                <div class="form-group">
                                     <label for="" class="col-md-5 control-label">Products Quantity</label>
-
-                                    <div class="col-md-7"><!-- col-md-7 Begin -->
-                                        <select name="product_qty" id="" class="form-control"><!-- select Begin -->
+                                    <div class="col-md-7">
+                                        <select name="product_qty" id="qty" class="form-control">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
                                             <option>4</option>
                                             <option>5</option>
-                                        </select><!-- select Finish -->
-
-                                    </div><!-- col-md-7 Finish -->
-
-                                </div><!-- form-group Finish -->
-
-                                <div class="form-group"><!-- form-group Begin -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-md-5 control-label">Product Size</label>
-
-                                    <div class="col-md-7"><!-- col-md-7 Begin -->
-
-                                        <select name="product_size" class="form-control"><!-- form-control Begin -->
-
+                                    <div class="col-md-7">
+                                        <select name="product_size" class="form-control">
                                             <option disabled selected value>Select a Size</option>
                                             <option>Small</option>
                                             <option>Medium</option>
                                             <option>Large</option>
-
-                                        </select><!-- form-control Finish -->
-
-                                    </div><!-- col-md-7 Finish -->
-                                </div><!-- form-group Finish -->
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-5">
@@ -89,50 +63,27 @@ $row = mysqli_fetch_assoc($sqlresult)
                                         </div>
                                     </div>
                                 </div>
-
-                                <button id="product" pid="<?=$row['id']?>" class="btn btn-primary">
+                                <button id="dproduct" pid="<?=$row['id']?>" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-shopping-cart" ></span> Add to cart
                                 </button>
-
-
-
-
-                            </form><!-- form-horizontal Finish -->
-
-
-                        </div><!-- box Finish -->
-
-                    </div><!-- panel default finish -->
-
-
-
-
-                </div><!-- Row finish -->
-
-
-
-            </div><!-- Row finish -->
-            <div class="box" id="details"><!-- box Begin -->
-
-                <h2>Product Details</h2>
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <p><?=$row['description']?></p>
-
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div><!-- Row finish -->
-
-    </div><!-- Row finish -->
-
-
-
-
-
-
-</div><!-- box Finish -->
+            <div class="details panel panel-info ">
+                <div class="panel-heading">
+                    <h3 class="text-left"> Product Details</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="description row">
+                        <p><?=$row['description']?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="container">
@@ -162,11 +113,7 @@ $row = mysqli_fetch_assoc($sqlresult)
             </div>
         <?php }?>
     </div>
-</div><!-- col-md-3 col-sm-6 center-responsive Finish -->
-
-
-
-
+</div>
 
 
 <?php include 'includes1/footer.php';?>

@@ -3,10 +3,29 @@ cart_count();
 $("body").delegate("#product","click",function(event){
 	event.preventDefault();
 	var p_id=$(this).attr('pid');
+	var qty=$("#qty").val();
 	$.ajax({
 		url: 'action.php',
 		type: 'POST',
-		data: {add:1,p_id:p_id},
+		data: {add:1,p_id:p_id,qty:qty},
+		success: function (data) {
+			alert(data);
+			cart_count();
+
+		}
+	})
+
+
+})
+cart_count();
+$("body").delegate("#dproduct","click",function(event){
+	event.preventDefault();
+	var p_id=$(this).attr('pid');
+	var qty=$("#qty").val();
+	$.ajax({
+		url: 'action.php',
+		type: 'POST',
+		data: {add:1,p_id:p_id,qty:qty},
 		success: function (data) {
 			alert(data);
 			cart_count();
@@ -87,8 +106,6 @@ $("body").delegate(".remove","click", function(event){
 		}
 	})
 })
-
-
 //update product form cart
 $("body").delegate(".update","click", function(event){
 	event.preventDefault();
