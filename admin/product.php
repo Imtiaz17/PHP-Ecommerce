@@ -53,8 +53,6 @@ if (isset($_GET['delete'])) {
 
                         </tr>
 
-
-
                         <tbody>
                         <?php while ($row = mysqli_fetch_assoc($read)):
                             $child = $row['cat'];

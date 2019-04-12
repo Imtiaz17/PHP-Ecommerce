@@ -11,7 +11,7 @@ $featured = mysqli_query($db,$sql);
 ?>
 
 <div class="container">
-    <div class="panel panel-default sidebar">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="text-left">Featured Products</h4>
         </div>
@@ -22,25 +22,26 @@ $featured = mysqli_query($db,$sql);
                         <div class="product">
                             <img src="img/<?= $product['image']; ?> " alt="<?= $product['title']; ?>" height="200" width="200">
                             <div class="text-center">
-                                <h4><?= $product['title']; ?></h4>
+                                <h3><?= $product['title']; ?></h3>
                                 <p class="list-price text-danger"> Previous Price <s>$<?= $product['pp']; ?></s></p>
                                 <p class="Price"> <b>Now </b> $<?= $product['price']; ?></p>
                             </div>
                             <div class="button text-center">
-                                <a href="details.php?id=<?=$product['id'];?>"   class="btn btn-success">
-                                    Details  <span class="glyphicon glyphicon-eye-open">
-                                </a>
-                                <button id="product" pid="<?=$product['id']?>" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                </button>
+                                            <a href="details.php?id=<?=$product['id'];;?>" class="btn btn-primary">
+                                                Details
+                                            </a>
+                                            <button id="product" pid="<?=$product['id'];?>" class="btn btn-success">
+                                                <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
+                                            </button>
+                                        </div>
                             </div>
                         </div>
-                    </div>
+                    
                 <?php } ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -50,7 +51,7 @@ $catsql = "select * from categories where parent=0";
 $catrun = mysqli_query($db,$catsql);
 while ($catchild = mysqli_fetch_assoc($catrun)) {?>
     <div class="container">
-        <div class="panel panel-default sidebar">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title title">
                     <p><?= $catchild['category']; ?></p>

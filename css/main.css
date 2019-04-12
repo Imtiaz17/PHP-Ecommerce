@@ -6,7 +6,7 @@ body
 	padding-bottom: 10px;
   font-family: 'Noto Serif', serif;
    font-size: 16px;
-   background-color: #F3F3F3;
+  
 
 }
 .wrap{
@@ -43,6 +43,10 @@ body
     max-height: 300px;
     
 
+}
+.feature:hover
+{
+  border: 1px solid black;
 }
 .product:hover
 {
@@ -506,4 +510,125 @@ img.details
     text-align: center;
     background: url('loader.gif') no-repeat center;
     height: 150px;
+}
+.prodetails
+{
+    margin-top: 40px;
+  
+}
+.dheader p
+{
+   
+  font-size: 50px;
+  text-shadow: 4px 4px 4px #aaa;
+
+}
+.proprice p
+{
+  font-size: 30px;
+  text-shadow: 2px 2px 3px #aaa;
+  color: #eb4d4b;
+}
+.qty
+{
+    font-size: 20px;
+  text-shadow: 1px 1px 1px #aaa;
+  color:#535c68;
+}
+#qty
+{
+    font-size: 20px;
+}
+.size
+{
+    font-size: 20px;
+  text-shadow: 1px 1px 1px #aaa;
+  color:#535c68;
+}
+.allsize
+{
+    font-size: 20px;
+}
+#dproduct
+{
+    background-color: #95afc0;
+    margin-top: 20px;
+    color: black;
+}
+#dproduct:hover
+{
+   background-color: #0be881;
+}
+  
+.proinfo
+{
+    margin-top: 50px;
+   
+    height: auto
+
+}
+.proinfo li a
+{
+    color:#575757;
+     font-size: 25px;
+}
+.tab-content p
+{
+    font-size: 18px;
+}
+.shipimg
+{
+    margin:20px;
+    float: left;
+}
+.shiptext
+{
+overflow: hidden;
+margin-top: 20px;
+}
+.share
+{
+    margin-top: 25px;
+    float: left;
+}
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
 }

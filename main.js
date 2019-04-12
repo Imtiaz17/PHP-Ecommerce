@@ -17,6 +17,9 @@ $("body").delegate("#product","click",function(event){
 
 
 })
+
+
+
 cart_count();
 $("body").delegate("#dproduct","click",function(event){
 	event.preventDefault();

@@ -55,7 +55,7 @@ if (isset($_POST['add'])) {
             } else {
                 $addsql = "insert into categories (category, parent) values ('$category','$parent')";
                 $final = mysqli_query($db,$addsql);
-                header('Location: category.php');
+                echo "<script>window.location='category.php'</script>";
             }
 
         }

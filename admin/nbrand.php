@@ -24,7 +24,7 @@ if (isset($_GET['delete'])) {
     $did = (int)$_GET['delete'];
     $dquery = "delete from brand where id='$did'";
     $result = $db->query($dquery);
-    header('Location: nbrand.php');
+    echo "<script>window.location='nbrand.php'</script>";
 }
 
 //
@@ -34,7 +34,7 @@ if (isset($_POST['add'])) {
     if ($brand == "") {
         $error = 'you must enter a brand';
     } else {
-        $sqlform = "select * from brand where brand_name='$brand' and cat_id = '$subcat'";
+        $sqlform = "select * from brand where brand_name='$brand' and cat_id = '$category'";
         $fresult = $db->query($sqlform);
         $count = mysqli_num_rows($fresult);
         if ($count > 0) {
@@ -42,7 +42,7 @@ if (isset($_POST['add'])) {
         } else {
             $addsql = "insert into brand (brand_name,cat_id) values ('$brand','$category')";
             mysqli_query($db, $addsql);
-            header('Location: nbrand.php');
+             echo "<script>window.location='nbrand.php'</script>";
         }
 
     }
