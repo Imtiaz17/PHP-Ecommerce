@@ -21,12 +21,12 @@ $user_id = $row_user['id'];
     <div class="panel-heading text-center" style="font-size: 30px; font-weight: bold;">Select Payment Option</div>
     <div class="panel-body">
       <div class="row">
-      	<img src="img/cash.png"  width="30%" height=20%" style="float: left">
+      	<img src="img/cash.png"  width="30%" height="20%" style="float: left">
       	<a href="order.php?c_id=<?php echo $user_id ?>"> <h3>Place Order</h3> </a>
 
       </div>
       <div class="row">
-      	<img src="img/card.png" width="30%" height=20%" style="float: left">
+      	<img src="img/card.png" width="30%" height="20%" style="float: left">
       	<a href=""> <h3>Coming soon......</h3> </a>
 
       </div>

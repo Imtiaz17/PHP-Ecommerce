@@ -10,7 +10,7 @@ $featured = mysqli_query($db,$sql2);
 <nav class="main-menu">
     <ul>
         <?php while ($parent = mysqli_fetch_assoc($result)) { ?>
-        <li class="first"><a class="first" href="#"><?= $parent['category'] ?></a>
+        <li class="first"><a class="first"><?= $parent['category'] ?></a>
             <ul class="subcat">
                 <?php $parent_id = (int)$parent['id'];
                 $sql2 = "select * from categories where parent='$parent_id'";
@@ -20,10 +20,10 @@ $featured = mysqli_query($db,$sql2);
                     <?php } ?>   
             </ul>
              </li>
-
             <?php }?>
-
+             
       <li class="second"> <a href="#" id="cart"> Cart <span class="badge">0</span></a>
+      
     <ul>
        <li>
          <div class="aa panel panel-info">

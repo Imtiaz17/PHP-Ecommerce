@@ -4,11 +4,16 @@ include'core/db.php';
 
 if (isset($_POST["action"])) {
 	$id=$_POST['id'];
-$query="select * from product where cat='$id' ";
-
+$query="select * from product where cat='$id'";
+ if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
+ {
+  $query .= "
+   AND price BETWEEN '".$_POST["minimum_price"]."' AND '".$_POST["maximum_price"]."'
+  ";
+ }
 if (isset($_POST["brand"])) {
-	$brand_filter = implode(',',$_POST['brand']);
-	$query="select * from product where brand IN ('$brand_filter')";
+	$brand_filter = implode("','",$_POST['brand']);
+	$query.= "AND brand IN('".$brand_filter."')";
 }
 
 $dbquery=mysqli_query($db,$query);

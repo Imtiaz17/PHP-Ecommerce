@@ -18,7 +18,7 @@ if ($cheak>0) {
   while ($row=mysqli_fetch_assoc($dbsql)) {
     $_SESSION['id']=$row['id'];
   }
-  header("Location:index.php");
+ echo "<script>window.open('index.php','_self')</script>";
 
 }
 else {

@@ -11,16 +11,19 @@ $featured = mysqli_query($db,$sql);
 ?>
 
 <div class="container">
-    <div class="panel panel-default">
+  
+
+     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="text-left">Featured Products</h4>
         </div>
         <div class="panel-body">
-            <div class="row">
+              <div class="multiple ">
+          
                 <?php while ($product = mysqli_fetch_assoc($featured)) { ?>
-                    <div class="col-md-3 wrap">
-                        <div class="product">
-                            <img src="img/<?= $product['image']; ?> " alt="<?= $product['title']; ?>" height="200" width="200">
+                   
+                        <div class="product wrap">
+                            <img style="float: right;" src="img/<?= $product['image']; ?>"  height="200" width="200">
                             <div class="text-center">
                                 <h3><?= $product['title']; ?></h3>
                                 <p class="list-price text-danger"> Previous Price <s>$<?= $product['pp']; ?></s></p>
@@ -35,14 +38,19 @@ $featured = mysqli_query($db,$sql);
                                             </button>
                                         </div>
                             </div>
-                        </div>
+                            
+                            <?php } ?>
+                            </div>
+                            </div>
+                            </div>
+                          
+                            </div>
+                       
                     
-                <?php } ?>
-                </div>
-            </div>
-        </div>
-    </div>
+              
+           
 
+       
 
 
 <!--Category wise product show-->
